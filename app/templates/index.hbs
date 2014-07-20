@@ -1,0 +1,22 @@
+{{#split-view isVertical=true class="hamster-view"}}
+	{{#split-child class="child"}}
+		<div class="hamster-editor">
+			{{ace-editor contentBinding="model.scratchpad"}}
+		</div>
+	{{/split-child}}
+	{{split-sash class="sash"}}
+	{{#split-child class="compositeRight"}}
+		{{#split-view isVertical=false class="hamster-runtime"}}
+			{{#split-child class="stage"}}
+				<ul class="toolbar">
+					<li>{{bs-button title="Play" class="navbar-btn" clicked="play"}}</li>
+					<li>{{bs-button title="Clear Console" class="navbar-btn" clicked="clearConsole"}}</li>
+				</ul>
+				<div class="playfield"></div>
+			{{/split-child}}
+			{{split-sash class="sash"}}
+			{{#split-child class="console child"}}
+			{{/split-child}}
+		{{/split-view}}
+	{{/split-child}}
+{{/split-view}}

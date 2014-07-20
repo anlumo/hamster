@@ -1,3 +1,87 @@
-html, body {
-  margin: 20px;
+.hamster.container {
+    position: absolute;
+    top: 55px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+}
+.hamster-view {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    /*display: flex;
+    align-items: stretch;
+    flex-wrap: nowrap;*/
+}
+
+.hamster-view > .child, .compositeRight {
+    min-width: 250px;
+}
+
+.child {
+    border: solid;
+    border-width: 1px;
+    border-radius: 10px;
+
+    padding: 10px;
+    overflow: hidden;
+}
+
+.hamster-editor {
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    overflow: scroll;
+}
+
+.hamster-runtime {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.stage {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.toolbar {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.toolbar > li {
+    padding: 5px;
+}
+
+.playfield {
+    flex-grow: 1;
+    background-color: yellow;
+    overflow: scroll;
+
+    border: solid;
+    border-width: 1px;
+    border-radius: 10px;
+}
+
+.hamster-runtime > .console {
+    overflow: scroll;
+    background-color: black;
+}
+
+.hamster-runtime > .child {
+    min-height: 100px;
 }

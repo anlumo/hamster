@@ -20,4 +20,22 @@ var app = new EmberApp();
 app.import('vendor/bootstrap/dist/js/bootstrap.js');
 app.import('vendor/bootstrap/dist/css/bootstrap.css');
 
-module.exports = app.toTree();
+app.import('vendor/ember-split-view/lib/ember-split-view.js')
+
+app.import('vendor/es5-shim/es5-shim.js');
+
+var pickFiles = require('broccoli-static-compiler');
+var aceEditor = pickFiles('vendor/ace-builds/src-noconflict/', {
+    srcDir: '/',
+    files: ['worker-javascript.js', 'ace.js', 'mode-javascript.js'],
+    destDir: '/assets'
+});
+
+var bootstrapForEmber = pickFiles('vendor/ember-addons.bs_for_ember/dist/js/', {
+    srcDir: '/',
+    files: ['bs-core.max.js', 'bs-basic.max.js', 'bs-alert.max.js', 'bs-button.max.js'],
+    destDir: '/assets'
+});
+
+var mergeTrees = require('broccoli-merge-trees');
+module.exports = mergeTrees([app.toTree(), aceEditor, bootstrapForEmber]);

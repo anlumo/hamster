@@ -7,17 +7,17 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Hamster</a>
+			{{#link-to "index" class="navbar-brand"}}Hamster{{/link-to}}
 		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li class="active">{{#link-to index}}Home{{/link-to}}</li>
-				<li><a href="#about">About</a></li>
+				<li>{{#link-to "index"}}Home{{/link-to}}</li>
+				<li>{{#link-to "about"}}About{{/link-to}}</li>
 			</ul>
 		</div>
 	</div>
 </div>
 
-<div class="container">
+<div class="hamster container">
 	{{outlet}}
 </div>
