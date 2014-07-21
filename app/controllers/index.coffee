@@ -9,5 +9,7 @@ IndexController = Ember.Controller.extend
 			console.log "Play!"
 		clearConsole: ->
 			@get('model').set 'console', ""
+		selectTemplate: (newgrid) ->
+			@set 'grid', newgrid
 
 `export default IndexController`

@@ -13,9 +13,18 @@
 					<li>{{bs-button title="Step" class="navbar-btn" clicked="step"}}</li>
 					<li>{{bs-button title="Reset" class="navbar-btn" clicked="reset"}}</li>
 					<li>{{bs-button title="Clear Console" class="navbar-btn" clicked="clearConsole"}}</li>
+					<li>{{#bs-button class="navbar-btn" clicked="rotate"}}<img src="images/linksUm24.gif" alt="Rotate">{{/bs-button}}</li>
+
+					<li class="btn-group">{{#bs-button class="switchPlayfield navbar-btn dropdown-toggle" data-toggle="dropdown"}}<img src="images/size24.gif" alt="Switch Playfield">{{/bs-button}}
+					<ul class="dropdown-menu" role="menu">
+						{{#each model.playfieldTemplates}}
+						<li class="menuitem"><a {{action 'selectTemplate' grid}}>{{name}}</a></li>
+						{{/each}}
+					</ul>
+					</li>
 				</ul>
 				<div class="playfield-container">
-					{{render "Playfield" this}}
+					{{render "Playfield" grid}}
 				</div>
 			{{/split-child}}
 			{{split-sash class="sash"}}

@@ -69,6 +69,10 @@
     padding: 5px;
 }
 
+.menuitem {
+    cursor: pointer;
+}
+
 .playfield-container {
     flex-grow: 1;
     overflow: scroll;

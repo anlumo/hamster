@@ -1,22 +1,8 @@
 `import Ember from 'ember'`
 
 PlayfieldController = Ember.Controller.extend
-	# max: 21x13
-	grid: [
-		'#####################',
-		'#                   #',
-		'#               #   #',
-		'#>11111        #1#  #',
-		'#     11      #111# #',
-		'#      1   11111111##',
-		'#      1   1  #111# #',
-		'#      1  11   #1#  #',
-		'#      1111     #   #',
-		'#####################'
-	]
-
 	bricks: (->
-		grid = @get 'grid'
+		grid = @get 'model'
 		bricks = Ember.A()
 
 		for y in [0...grid.length]
@@ -26,10 +12,10 @@ PlayfieldController = Ember.Controller.extend
 					bricks.push [x,y]
 
 		return bricks
-	).property 'grid'
+	).property 'model'
 
 	corn: (->
-		grid = @get 'grid'
+		grid = @get 'model'
 		corn = Ember.A()
 
 		for y in [0...grid.length]
@@ -42,14 +28,38 @@ PlayfieldController = Ember.Controller.extend
 						count: parseInt(line[x], 13)
 
 		return corn
-	).property 'grid'
+	).property 'model'
 
 	playfieldwidth: (->
-		(1+@get('grid')[0].length) * 32
-	).property 'grid'
+		(1+@get('model')[0].length) * 32
+	).property 'model'
 
 	playfieldheight: (->
-		(1+@get('grid').length) * 32
-	).property 'grid'
+		(1+@get('model').length) * 32
+	).property 'model'
+
+	hamsterposition: (->
+		grid = @get 'model'
+
+		rotation = 0
+		location = (->
+			for y in [0...grid.length]
+				line = grid[y]
+				for x in [0...line.length]
+					switch line[x]
+						when '>'
+							rotation = 0
+						when 'v'
+							rotation = 90
+						when '<'
+							rotation = 180
+						when '^'
+							rotation = 270
+						else
+							continue
+					return [x,y]
+		)()
+		return [location, rotation]
+	).property 'model'
 
 `export default PlayfieldController`
