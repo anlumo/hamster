@@ -78,6 +78,7 @@
     border-radius: 10px;
 
     background-color: #434343;
+    background-image:linear-gradient(#434343, #282828);
 }
 
 .playfield {
