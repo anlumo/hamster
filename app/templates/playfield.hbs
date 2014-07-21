@@ -1,0 +1,7 @@
+<div class="playfield_hamster playfield_cell"></div>
+{{#each bricks}}
+	{{view "brick" location=this}}
+{{/each}}
+{{#each corn}}
+	{{view "corn" location=location corncount=count}}
+{{/each}}

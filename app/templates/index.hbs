@@ -14,7 +14,9 @@
 					<li>{{bs-button title="Reset" class="navbar-btn" clicked="reset"}}</li>
 					<li>{{bs-button title="Clear Console" class="navbar-btn" clicked="clearConsole"}}</li>
 				</ul>
-				<div class="playfield"></div>
+				<div class="playfield-container">
+					{{render "Playfield" this}}
+				</div>
 			{{/split-child}}
 			{{split-sash class="sash"}}
 			{{#split-child class="console child"}}

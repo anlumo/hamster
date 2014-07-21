@@ -68,14 +68,23 @@
     padding: 5px;
 }
 
-.playfield {
+.playfield-container {
     flex-grow: 1;
-    background-color: yellow;
     overflow: scroll;
 
     border: solid;
     border-width: 1px;
     border-radius: 10px;
+
+    background-color: #434343;
+}
+
+.playfield {
+    position: relative;
+    background-color: transparent;
+    background-image: linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent);
+    background-size: 64px 64px;
+    background-position: 0% 0%;
 }
 
 .hamster-runtime > .console {
@@ -85,4 +94,67 @@
 
 .hamster-runtime > .child {
     min-height: 100px;
+}
+
+.playfield_cell {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-size: contain;
+}
+
+.playfield_hamster {
+    background-image: url(../images/hamster.png);
+}
+
+.playfield_brick {
+    background-image: url(../images/mauer.png);
+}
+
+.playfield_corn1 {
+    background-image: url(../images/korn1.png);
+}
+
+.playfield_corn2 {
+    background-image: url(../images/korn2.png);
+}
+
+.playfield_corn3 {
+    background-image: url(../images/korn3.png);
+}
+
+.playfield_corn4 {
+    background-image: url(../images/korn4.png);
+}
+
+.playfield_corn5 {
+    background-image: url(../images/korn5.png);
+}
+
+.playfield_corn6 {
+    background-image: url(../images/korn6.png);
+}
+
+.playfield_corn7 {
+    background-image: url(../images/korn7.png);
+}
+
+.playfield_corn8 {
+    background-image: url(../images/korn8.png);
+}
+
+.playfield_corn9 {
+    background-image: url(../images/korn9.png);
+}
+
+.playfield_corn10 {
+    background-image: url(../images/korn10.png);
+}
+
+.playfield_corn11 {
+    background-image: url(../images/korn11.png);
+}
+
+.playfield_corn12 {
+    background-image: url(../images/korn12.png);
 }
