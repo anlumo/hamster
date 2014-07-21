@@ -9,9 +9,9 @@
 		{{#split-view isVertical=false class="hamster-runtime"}}
 			{{#split-child class="stage"}}
 				<ul class="toolbar">
-					<li>{{bs-button title="Play" class="navbar-btn" clicked="play"}}</li>
+					<li>{{bs-button title="►︎" class="navbar-btn" clicked="play"}}</li>
+					<li>{{#bs-button class="navbar-btn" clicked="reset"}}<img src="images/loeschen24.gif" alt="Reset">{{/bs-button}}</li>
 					<li>{{bs-button title="Step" class="navbar-btn" clicked="step"}}</li>
-					<li>{{bs-button title="Reset" class="navbar-btn" clicked="reset"}}</li>
 					<li>{{bs-button title="Clear Console" class="navbar-btn" clicked="clearConsole"}}</li>
 					<li>{{#bs-button class="navbar-btn" clicked="rotate"}}<img src="images/linksUm24.gif" alt="Rotate">{{/bs-button}}</li>
 
