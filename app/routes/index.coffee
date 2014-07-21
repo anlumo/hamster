@@ -5,6 +5,11 @@ IndexRoute = Ember.Route.extend
 		scratchpad = localStorage.getItem('scratchpad')
 		if not scratchpad
 			scratchpad = "\n\n\n"
+		grid = localStorage.getItem('grid')
+		if not grid
+			grid = ['###', '#>#', '###']
+		else
+			grid = grid.split '\n'
 		return Ember.Object.create
 			scratchpad: scratchpad
 			console: "Hello World"
