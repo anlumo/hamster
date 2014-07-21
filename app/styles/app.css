@@ -58,6 +58,7 @@
 .toolbar {
     list-style-type: none;
     display: flex;
+    flex-shrink: 0;
     justify-content: center;
     margin: 0;
     padding: 0;
