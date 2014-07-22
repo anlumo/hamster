@@ -10,4 +10,18 @@ App = Ember.Application.extend
 
 loadInitializers App, 'hamster'
 
+window.Hub = Ember.Object.create
+    init: ->
+        @set 'HUB', Ember.Object.createWithMixins Ember.Evented, {}
+
+    publish: ->
+        hub = @get 'HUB'
+        hub.trigger.apply hub, arguments
+    subscribe: ->
+        hub = @get 'HUB'
+        hub.on.apply hub, arguments
+    unsubscribe: ->
+        hub = @get 'HUB'
+        hub.off.apply hub, arguments
+
 `export default App`
