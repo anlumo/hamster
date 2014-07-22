@@ -112,7 +112,7 @@ PlayfieldController = Ember.Controller.extend
 			@get('model').incrementProperty 'carryCorn'
 			@get('model').notifyPropertyChange 'grid'
 		else
-			throw new Error("Tried to pick up corn on empty field.")
+			throw new Error("Tried to pick up corn on an empty field.")
 
 	give: ->
 		hamsterLocation = @get 'model.hamsterLocation'
