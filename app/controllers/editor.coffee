@@ -2,30 +2,32 @@
 
 EditorController = Ember.Controller.extend
 	init: ->
+		scope =
+			print: (text) ->
+				window.Hub.publish 'logHTML', text.toString().replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br>")
+			vor: ->
+				window.Hub.publish 'hamsterForward'
+			linksUm: ->
+				window.Hub.publish 'hamsterTurnLeft'
+			rechtsUm: ->
+				window.Hub.publish 'hamsterTurnRight'
+			nimm: ->
+				window.Hub.publish 'hamsterPickUp'
+			gib: ->
+				window.Hub.publish 'hamsterGive'
+			vorneFrei: ->
+				result = false
+				window.Hub.publish 'hamsterCanMoveForward', (can) ->
+					result = can
+				result
+			kornDa: ->
+				result = false
+				window.Hub.publish 'hamsterHasCorn', (has) ->
+					result = has
+				result
+
 		context = window.require('debugjs').createDebugger
-			sandbox:
-				print: (text) ->
-					window.Hub.publish 'logHTML', text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br>")
-				vor: ->
-					window.Hub.publish 'hamsterForward'
-				linksUm: ->
-					window.Hub.publish 'hamsterTurnLeft'
-				rechtsUm: ->
-					window.Hub.publish 'hamsterTurnRight'
-				nimm: ->
-					window.Hub.publish 'hamsterPickUp'
-				gib: ->
-					window.Hub.publish 'hamsterGive'
-				vorneFrei: ->
-					result = false
-					window.Hub.publish 'hamsterCanMoveForward', (can) ->
-						result = can
-					result
-				kornDa: ->
-					result = false
-					window.Hub.publish 'hamsterHasCorn', (has) ->
-						result = has
-					result
+			sandbox: scope
 		context.machine.on 'error', (e) =>
 			location = context.getCurrentLoc()
 			if location
