@@ -16,7 +16,7 @@ IndexRoute = Ember.Route.extend
 		else
 			hamsterLocation = hamsterLocation.split(',').map (num) ->
 				parseInt num
-		carryCorn = localStorage.getItem('carryCorn')
+		carryCorn = parseInt localStorage.getItem('carryCorn')
 		if not carryCorn
 			carryCorn = 0
 		return Ember.Object.create
