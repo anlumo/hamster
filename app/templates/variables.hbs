@@ -1,6 +1,10 @@
-<table>
-	<tr><th>Variable</th><th>Content</th></tr>
-	{{#each model.variables}}
-		<tr><td>{{name}}</td><td>{{description}}</td></tr>
-	{{/each}}
+<table class="variables-table">
+	<thead class="variables-table">
+		<tr><th>Variable</th><th>Content</th></tr>
+	</thead>
+	<tbody>
+		{{#each model.variables}}
+			<tr class="variables-table"><td>{{name}}</td><td>{{description}}</td></tr>
+		{{/each}}
+	</tbody>
 </table>
