@@ -3,7 +3,7 @@
 EditorController = Ember.Controller.extend
 	init: ->
 		scope =
-			print: (text) ->
+			schreib: (text) ->
 				window.Hub.publish 'logHTML', text.toString().replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br>")
 			vor: ->
 				window.Hub.publish 'hamsterForward'
