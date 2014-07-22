@@ -62,13 +62,9 @@ EditorController = Ember.Controller.extend
 
 		for obj in scope
 			value = frame.evalInScope(obj.name)
-			if value == undefined
-				description = "undefined"
-			else
-				description = value.toString()
 			variables.push
 				name: obj.name
-				description: description
+				description: JSON.stringify value
 		@get('model').set 'variables', variables
 
 	play: ->
