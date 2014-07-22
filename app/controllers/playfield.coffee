@@ -81,7 +81,7 @@ PlayfieldController = Ember.Controller.extend
 		@get('model').set 'hamsterLocation', [x, y, hamsterLocation[2]]
 
 	turnLeft: ->
-		hamsterLocation = @get('model.hamsterLocation').clone()
+		hamsterLocation = Ember.copy @get('model.hamsterLocation'), true
 		if hamsterLocation[2] > 0
 			hamsterLocation[2] = hamsterLocation[2]-90
 		else
@@ -89,7 +89,7 @@ PlayfieldController = Ember.Controller.extend
 		@get('model').set 'hamsterLocation', hamsterLocation
 
 	turnRight: ->
-		hamsterLocation = @get('model.hamsterLocation').clone()
+		hamsterLocation = Ember.copy @get('model.hamsterLocation'), true
 		if hamsterLocation[2] < 270
 			hamsterLocation[2] = hamsterLocation[2]+90
 		else
