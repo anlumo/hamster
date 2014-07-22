@@ -27,12 +27,12 @@ IndexController = Ember.Controller.extend
 		play: ->
 			window.Hub.publish 'play'
 		reset: ->
-			@get('model').set 'playfield', Ember.Object.create @get 'selectedTemplate'
+			@get('model').set 'playfield', Ember.Object.create Ember.copy @get('selectedTemplate'), true
 		clearConsole: ->
 			@get('model').set 'console', ""
 		selectTemplate: (template) ->
 			localStorage.setItem 'selectedTemplate', JSON.stringify(template)
 			@set 'selectedTemplate', template
-			@get('model').set 'playfield', Ember.Object.create template
+			@get('model').set 'playfield', Ember.Object.create Ember.copy template, true
 
 `export default IndexController`

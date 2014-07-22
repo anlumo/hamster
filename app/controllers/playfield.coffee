@@ -104,7 +104,11 @@ PlayfieldController = Ember.Controller.extend
 
 		cornCount = parseInt(grid[y][x], 13)
 		if cornCount > 0
-			grid[y][x] = (cornCount-1).toString(13)
+			line = grid[y]
+			if cornCount == 1
+				grid[y] = line.substr(0, x) + " " + line.substr(x + 1)
+			else
+				grid[y] = line.substr(0, x) + (cornCount-1).toString(13) + line.substr(x + 1)
 			@get('model').incrementProperty 'carryCorn'
 			@get('model').notifyPropertyChange 'grid'
 		else
@@ -119,10 +123,11 @@ PlayfieldController = Ember.Controller.extend
 		cornCount = @get 'model.carryCorn'
 		if cornCount > 0
 			fieldCorn = parseInt(grid[y][x], 13)
+			line = grid[y]
 			if isNaN(fieldCorn)
-				grid[y][x] = '1'
+				grid[y] = line.substr(0, x) + "1" + line.substr(x + 1)
 			else if fieldCorn < 12
-				grid[y][x] = (fieldCorn+1).toString(13)
+				grid[y] = line.substr(0, x) + (fieldCorn+1).toString(13) + line.substr(x + 1)
 
 			@get('model').notifyPropertyChange 'grid'
 			@get('model').decrementProperty 'carryCorn'
