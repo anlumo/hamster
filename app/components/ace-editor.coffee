@@ -71,7 +71,7 @@ AceEditorComponent = Ember.Component.extend
 		renderer = @editor.renderer;
 		newHeight = @editor.getSession().getScreenLength() * renderer.lineHeight + renderer.scrollBar.getWidth()
 		newHeight = Math.max newHeight, 200
-		Ember.$("#" + this.elementId).height newHeight.toString()
+		Ember.$("#" + this.elementId).css 'min-height', newHeight.toString() + "px"
 		@editor.resize()
 	).observes 'content'
 

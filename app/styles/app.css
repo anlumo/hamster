@@ -34,10 +34,10 @@
     position: absolute;
     padding: 10px 0;
     top: 0;
-    bottom: 0;
     left: 0;
     right: 0;
     overflow: scroll;
+    height: 100%;
 }
 
 .hamster-runtime {
@@ -176,6 +176,10 @@
 
 .console span.error {
     color: red;
+}
+
+.ace_editor {
+    height: 100%;
 }
 
 .currentLine {
