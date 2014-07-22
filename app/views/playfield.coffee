@@ -5,22 +5,24 @@ PlayfieldView = Ember.View.extend
 
 	updateHamsterPosition: (->
 		hamster = Ember.$('.playfield_hamster')
-		pos = @get 'controller.hamsterposition'
+		pos = @get 'controller.model.hamsterLocation'
+		if not pos
+			return
 
-		transform = 'translate(' + (pos[0][0] * 32 + 16) + 'px, ' + (pos[0][1] * 32 + 16) + 'px) rotate(' + pos[1] + 'deg)'
+		transform = 'translate(' + (pos[0] * 32 + 16) + 'px, ' + (pos[1] * 32 + 16) + 'px) rotate(' + pos[2] + 'deg)'
 
 		hamster.css 'transform', transform
 		hamster.css '-webkit-transform', transform
 		hamster.css '-moz-transform', transform
 		hamster.css '-o-transform', transform
 		hamster.css '-ms-transform', transform
-	).observes 'controller.hamsterposition'
+	).observes 'controller.model.hamsterLocation'
 
 	didInsertElement: (->
 		@updateHamsterPosition()
 
 		Ember.$('#' + @elementId).css 'width', @get 'controller.playfieldwidth'
 		Ember.$('#' + @elementId).css 'height', @get 'controller.playfieldheight'
-	).observes 'controller.model'
+	).observes 'controller.playfieldwidth', 'controller.playfieldheight'
 
 `export default PlayfieldView`

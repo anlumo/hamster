@@ -7,26 +7,38 @@ IndexRoute = Ember.Route.extend
 			scratchpad = "\n\n\n"
 		grid = localStorage.getItem('grid')
 		if not grid
-			grid = ['###', '#>#', '###']
+			grid = ['###', '# #', '###']
 		else
 			grid = grid.split '\n'
+		hamsterLocation = localStorage.getItem('hamsterLocation')
+		if not hamsterLocation
+			hamsterLocation = [1,1,0]
+		else
+			hamsterLocation = hamsterLocation.split ','
+		carryCorn = localStorage.getItem('carryCorn')
+		if not carryCorn
+			carryCorn = 0
 		return Ember.Object.create
 			scratchpad: scratchpad
 			console: "Hello World"
-			grid: grid
+			playfield:
+				grid: grid
+				hamsterLocation: hamsterLocation
+				carryCorn: carryCorn
 			playfieldTemplates: [
 				{
 					name: "Task 1"
 					grid: [
 						"####################"
 						"#           #      #"
-						"#   v 1 #   ###### #"
+						"#     1 #   ###### #"
 						"#### #  #  1#11111 #"
 						"#   1 1     ###### #"
 						"#  ### ######      #"
 						"#11#               #"
 						"####################"
 					]
+					hamsterLocation: [4, 2, 90]
 					carryCorn: 0
 				}
 				{
@@ -35,10 +47,11 @@ IndexRoute = Ember.Route.extend
 						"########"
 						"#      #"
 						"#  11  #"
-						"# v### #"
+						"#  ### #"
 						"#      #"
 						"########"
 					]
+					hamsterLocation: [2, 3, 90]
 					carryCorn: 4
 				}
 				{
@@ -50,9 +63,10 @@ IndexRoute = Ember.Route.extend
 						"#      #    #"
 						"#     ###   #"
 						"#    #####  #"
-						"# > ####### #"
+						"#   ####### #"
 						"#############"
 					]
+					hamsterLocation: [2, 6, 0]
 					carryCorn: 0
 				}
 				{
@@ -60,22 +74,24 @@ IndexRoute = Ember.Route.extend
 					grid: [
 						"########"
 						"# 111  #"
-						"#v###  #"
+						"# ###  #"
 						"# 111  #"
 						"#      #"
 						"########"
 					]
+					hamsterLocation: [1, 2, 90]
 					carryCorn: 0
 				}
 				{
 					name: "Task 5"
 					grid: [
 						"########"
-						"#  #  v#"
+						"#  #   #"
 						"#   #  #"
 						"#    # #"
 						"########"
 					]
+					hamsterLocation: [6, 1, 90]
 					carryCorn: 6
 				}
 				{
@@ -88,16 +104,17 @@ IndexRoute = Ember.Route.extend
 						"# # ## #"
 						"# #    #"
 						"# ######"
-						"#     <#"
+						"#      #"
 						"########"
 					]
+					hamsterLocation: [6, 7, 180]
 					carryCorn: 0
 				}
 				{
 					name: "Task 7"
 					grid: [
 						"#####################"
-						">  1 1111111   11 11#"
+						"   1 1111111   11 11#"
 						"#1 1 1   1   1  1   #"
 						"#1 1 1 1 1 111 11 1 #"
 						"#1     1 1     11 1 #"
@@ -106,6 +123,7 @@ IndexRoute = Ember.Route.extend
 						"#    1           11  "
 						"#####################"
 					]
+					hamsterLocation: [0, 1, 0]
 					carryCorn: 0
 				}
 				{
@@ -117,16 +135,17 @@ IndexRoute = Ember.Route.extend
 						"#1#   #1 #1  #"
 						"#### #########"
 						"#### #########"
-						"####       < #"
+						"####         #"
 						"##############"
 					]
+					hamsterLocation: [11, 6, 180]
 					carryCorn: 0
 				}
 				{
 					name: "Task 9"
 					grid: [
 						"#####################"
-						"#>111111111111111111#"
+						"# 111111111111111111#"
 						"#1111 111111111 1111#"
 						"#111 1 1111111 1 111#"
 						"#11 111 11111 111 11#"
@@ -139,6 +158,7 @@ IndexRoute = Ember.Route.extend
 						"#1111111111111111111#"
 						"#####################"
 					]
+					hamsterLocation: [1, 1, 0]
 					carryCorn: 50
 				}
 				{
@@ -147,7 +167,7 @@ IndexRoute = Ember.Route.extend
 						"#####################"
 						"#                   #"
 						"#               #   #"
-						"#>11111        #1#  #"
+						"# 11111        #1#  #"
 						"#     11      #111# #"
 						"#      1   11111111##"
 						"#      1   1  #111# #"
@@ -155,23 +175,27 @@ IndexRoute = Ember.Route.extend
 						"#      1111     #   #"
 						"#####################"
 					]
+					hamsterLocation: [1, 3, 0]
 					carryCorn: 0
 				}
 				{
 					name: "Task 11"
 					grid: [
 						"##########"
-						"#>       #"
+						"#        #"
 						"##########"
 					]
+					hamsterLocation: [1, 1, 0]
+					carryCorn: 0
 				}
 				{
 					name: "Task 12"
 					grid: [
 						"##########"
-						"#>  1 1  #"
+						"#   1 1  #"
 						"##########"
 					]
+					hamsterLocation: [1, 1, 0]
 					carryCorn: 8
 				}
 				{
@@ -180,13 +204,14 @@ IndexRoute = Ember.Route.extend
 						"#########"
 						"#### ####"
 						"#### ####"
-						"#   >   #"
+						"#       #"
 						"#### ####"
 						"#### ####"
 						"#### ####"
 						"#### ####"
 						"#########"
 					]
+					hamsterLocation: [4, 3, 0]
 					carryCorn: 1
 				}
 				{
@@ -200,16 +225,17 @@ IndexRoute = Ember.Route.extend
 						"# ### ### ### ###"
 						"# ### ### ### ###"
 						"# ### ### ### ###"
-						"#              <#"
+						"#               #"
 						"#################"
 					]
+					hamsterLocation: [15, 8, 180]
 					carryCorn: 4 # has to be 1, 2, 3 or 4 for the task!
 				}
 				{
 					name: "Task 15"
 					grid: [
 						"#########"
-						"#>      #"
+						"#       #"
 						"# 1#1#1 #"
 						"# ##### #"
 						"# 1###1 #"
@@ -218,19 +244,21 @@ IndexRoute = Ember.Route.extend
 						"#       #"
 						"#########"
 					]
+					hamsterLocation: [1, 1, 0]
 					carryCorn: 0
 				}
 				{
 					name: "Empty 20x5"
 					grid: [
 						"####################"
-						"#>                 #"
+						"#                  #"
 						"#                  #"
 						"#                  #"
 						"#                  #"
 						"#                  #"
 						"####################"
 					]
+					hamsterLocation: [1, 1, 0]
 					carryCorn: 100
 				}
 			]

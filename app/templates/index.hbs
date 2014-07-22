@@ -16,13 +16,13 @@
 					<li class="btn-group">{{#bs-button class="switchPlayfield navbar-btn dropdown-toggle" data-toggle="dropdown"}}<img src="images/size24.gif" alt="Switch Playfield">{{/bs-button}}
 					<ul class="dropdown-menu" role="menu">
 						{{#each model.playfieldTemplates}}
-						<li class="menuitem"><a {{action 'selectTemplate' grid}}>{{name}}</a></li>
+						<li class="menuitem"><a {{action 'selectTemplate' this}}>{{name}}</a></li>
 						{{/each}}
 					</ul>
 					</li>
 				</ul>
 				<div class="playfield-container">
-					{{render "Playfield" grid}}
+					{{render "Playfield" model.playfield}}
 				</div>
 			{{/split-child}}
 			{{split-sash class="sash"}}
