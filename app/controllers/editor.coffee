@@ -25,6 +25,8 @@ EditorController = Ember.Controller.extend
 				window.Hub.publish 'hamsterHasCorn', (has) ->
 					result = has
 				result
+			maulLeer: =>
+				return @get('model.playfield.carryCorn') == 0
 
 		context = window.require('debugjs').createDebugger
 			sandbox: scope
