@@ -1,7 +1,11 @@
 `import Ember from 'ember'`
 
 EditorController = Ember.Controller.extend
-	init: ->
+	setupDone: false
+	setup: ->
+		if @setupDone
+			return
+		@setupDone = true
 		scope =
 			schreib: (text) ->
 				window.Hub.publish 'logHTML', text.toString().replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br>")
@@ -46,10 +50,10 @@ EditorController = Ember.Controller.extend
 				window.Hub.publish 'logHTML', '<span class="error">Error: <em>' + e.message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br>") + '</em></span>'
 
 		@set 'context', context
-		window.Hub.subscribe 'play', @play.bind this
-		window.Hub.subscribe 'stop', @stop.bind this
-		window.Hub.subscribe 'stepIn', @stepIn.bind this
-		window.Hub.subscribe 'stepOver', @stepOver.bind this
+		window.Hub.subscribe 'play', this, @play
+		window.Hub.subscribe 'stop', this, @stop
+		window.Hub.subscribe 'stepIn', this, @stepIn
+		window.Hub.subscribe 'stepOver', this, @stepOver
 
 	highlightLine: null
 

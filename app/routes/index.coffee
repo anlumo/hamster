@@ -19,9 +19,14 @@ IndexRoute = Ember.Route.extend
 		carryCorn = parseInt localStorage.getItem('carryCorn')
 		if not carryCorn
 			carryCorn = 0
+		logLines = localStorage.getItem('logLines')
+		if not logLines
+			logLines = Ember.A()
+		else
+			logLines = JSON.parse(logLines)
 		return Ember.Object.create
 			scratchpad: scratchpad
-			console: "Hello World"
+			logLines: logLines
 			playfield: Ember.Object.create
 				grid: grid
 				hamsterLocation: hamsterLocation
@@ -263,6 +268,23 @@ IndexRoute = Ember.Route.extend
 					carryCorn: 100
 				}
 			]
+
+	renderTemplate: (controller, model) ->
+		@_super(controller, model)
+		editor = @container.lookup 'controller:editor'
+		editor.set 'model', model
+		editor.setup()
+		@render 'editor',
+			outlet: 'editor'
+			into: 'index'
+			controller: editor
+		consoleC = @container.lookup 'controller:console'
+		consoleC.set 'model', model
+		consoleC.setup()
+		@render 'console',
+			outlet: 'console'
+			into: 'index'
+			controller: consoleC
 
 
 `export default IndexRoute`
