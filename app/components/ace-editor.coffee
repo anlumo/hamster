@@ -3,6 +3,8 @@
 AceEditorComponent = Ember.Component.extend
 	classNames: ['editor']
 
+	highlightRange: null
+
 	cursorPosition: ((key, val) ->
 		if !@editor
 			return {row: 0, column: 0}
@@ -72,5 +74,18 @@ AceEditorComponent = Ember.Component.extend
 		Ember.$("#" + this.elementId).height newHeight.toString()
 		@editor.resize()
 	).observes 'content'
+
+	oldHighlightLine: null
+
+	updateHighlightRange: (->
+		if @oldHighlightLine != null
+			@editor.getSession().removeGutterDecoration @oldHighlightLine, "currentLine"
+		highlightRange = @get('highlightRange')
+		if highlightRange
+			@editor.getSession().addGutterDecoration highlightRange.start.row, "currentLine"
+			@oldHighlightLine = highlightRange.start.row
+		else
+			@oldHighlightLine = null
+	).observes 'highlightRange'
 
 `export default AceEditorComponent`

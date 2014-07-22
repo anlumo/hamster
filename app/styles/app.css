@@ -177,3 +177,7 @@
 .console span.error {
     color: red;
 }
+
+.currentLine {
+    background-color: red;
+}
