@@ -1,6 +1,15 @@
 `import Ember from 'ember'`
 
 PlayfieldController = Ember.Controller.extend
+	init: ->
+		window.Hub.subscribe 'hamsterForward', @forward.bind this
+		window.Hub.subscribe 'hamsterTurnLeft', @turnLeft.bind this
+		window.Hub.subscribe 'hamsterTurnRight', @turnRight.bind this
+		window.Hub.subscribe 'hamsterPickUp', @pickUp.bind this
+		window.Hub.subscribe 'hamsterGive', @give.bind this
+		window.Hub.subscribe 'hamsterCanMoveForward', @canMoveForward.bind this
+		window.Hub.subscribe 'hamsterHasCorn', @hasCorn.bind this
+
 	bricks: (->
 		grid = @get 'model.grid'
 		bricks = Ember.A()
@@ -120,16 +129,16 @@ PlayfieldController = Ember.Controller.extend
 		else
 			throw new Error("Tried to give corn, but don't have any.")
 
-	hasCorn: ->
+	hasCorn: (handler) ->
 		hamsterLocation = @get 'model.hamsterLocation'
 		x = hamsterLocation[0]
 		y = hamsterLocation[1]
-		not isNaN parseInt(@get('model.grid')[y][x], 13)
+		handler(not isNaN parseInt @get('model.grid')[y][x], 13)
 
-	canMoveForward: ->
+	canMoveForward: (handler) ->
 		hamsterLocation = @forwardLocation()
 		x = hamsterLocation[0]
 		y = hamsterLocation[1]
-		@get('model.grid')[y][x] != '#'
+		handler(@get('model.grid')[y][x] != '#')
 
 `export default PlayfieldController`
