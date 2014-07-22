@@ -59,7 +59,7 @@
     list-style-type: none;
     display: flex;
     flex-shrink: 0;
-    justify-content: center;
+    justify-content: flex-start;
     margin: 0;
     padding: 0;
     background-color: white;
@@ -67,6 +67,10 @@
 
 .toolbar > li {
     padding: 5px;
+}
+
+.toolbar > li.cornCount {
+    align-self: center;
 }
 
 .menuitem {

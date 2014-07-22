@@ -7,6 +7,7 @@
 		{{#split-view isVertical=false class="hamster-runtime"}}
 			{{#split-child class="stage"}}
 				<ul class="toolbar">
+					<li class="cornCount"><img src="images/hamsterkorn24.png" alt="Corn"> {{model.playfield.carryCorn}}</li>
 					<li>{{bs-button title="►︎" class="navbar-btn" clicked="play"}}</li>
 					<li>{{#bs-button class="navbar-btn" clicked="reset"}}<img src="images/loeschen24.gif" alt="Reset">{{/bs-button}}</li>
 					<li>{{bs-button title="Step" class="navbar-btn" clicked="step"}}</li>
