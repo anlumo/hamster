@@ -14,23 +14,28 @@
 	{{#split-child class="compositeRight"}}
 		{{#split-view isVertical=false class="hamster-runtime"}}
 			{{#split-child class="stage"}}
-				<ul class="toolbar">
-					<li class="cornCount"><img src="images/hamsterkorn24.png" alt="Corn"> {{model.playfield.carryCorn}}</li>
-					<li>{{bs-button title="►︎" class="navbar-btn" clicked="play"}}</li>
-					<li>{{#bs-button class="navbar-btn" clicked="reset"}}<img src="images/loeschen24.gif" alt="Reset">{{/bs-button}}</li>
-					<li>{{bs-button title="Step In" class="navbar-btn" clicked="stepIn"}}</li>
-					<li>{{bs-button title="Step Over" class="navbar-btn" clicked="stepOver"}}</li>
-					<li>{{bs-button title="Clear Console" class="navbar-btn" clicked="clearConsole"}}</li>
-					<li>{{#bs-button class="navbar-btn" clicked="rotate"}}<img src="images/linksUm24.gif" alt="Rotate">{{/bs-button}}</li>
+				<div class="toolbar btn-group">
+					<div class="btn cornCount"><img src="images/hamsterkorn24.png" alt="Corn"> {{model.playfield.carryCorn}}
+						<div class="btn-group-xs btn-group-vertical">
+							{{bs-button title="+" class="btn" clicked="addCorn"}}
+							{{bs-button title="-" class="btn" clicked="removeCorn"}}
+						</div>
+					</div>
+					{{bs-button title="►︎" class="btn btn-default" clicked="play"}}
+					{{#bs-button class="btn" clicked="reset"}}<img src="images/loeschen24.gif" alt="Reset">{{/bs-button}}
+					{{bs-button title="Step In" class="btn" clicked="stepIn"}}
+					{{bs-button title="Step Over" class="btn" clicked="stepOver"}}
+					{{bs-button title="Clear Console" class="btn" clicked="clearConsole"}}
+					{{#bs-button class="btn" clicked="rotate"}}<img src="images/linksUm24.gif" alt="Rotate">{{/bs-button}}
 
-					<li class="btn-group">{{#bs-button class="switchPlayfield navbar-btn dropdown-toggle" data-toggle="dropdown"}}<img src="images/size24.gif" alt="Switch Playfield">{{/bs-button}}
+					<div class="btn-group">{{#bs-button class="switchPlayfield btn dropdown-toggle" data-toggle="dropdown"}}<img src="images/size24.gif" alt="Switch Playfield">{{/bs-button}}
 					<ul class="dropdown-menu" role="menu">
 						{{#each model.playfieldTemplates}}
 						<li class="menuitem"><a {{action 'selectTemplate' this}}>{{name}}</a></li>
 						{{/each}}
 					</ul>
-					</li>
-				</ul>
+					</div>
+				</div>
 				<div class="playfield-container">
 					{{render "Playfield" model.playfield}}
 				</div>

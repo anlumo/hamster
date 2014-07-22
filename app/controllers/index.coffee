@@ -41,5 +41,10 @@ IndexController = Ember.Controller.extend
 			localStorage.setItem 'selectedTemplate', JSON.stringify(template)
 			@set 'selectedTemplate', template
 			@get('model').set 'playfield', Ember.Object.create Ember.copy template, true
+		addCorn: ->
+			@get('model.playfield').incrementProperty 'carryCorn'
+		removeCorn: ->
+			if @get('model.playfield.carryCorn') > 0
+				@get('model.playfield').decrementProperty 'carryCorn'
 
 `export default IndexController`
