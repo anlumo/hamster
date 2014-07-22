@@ -21,7 +21,8 @@ IndexController = Ember.Controller.extend
 		clearConsole: ->
 			@get('model').set 'console', ""
 		selectTemplate: (template) ->
-			@set 'selectedTemplate', template
-			@get('model').set 'playfield', template
+			templateObject = Ember.Object.create template
+			@set 'selectedTemplate', templateObject
+			@get('model').set 'playfield', templateObject
 
 `export default IndexController`

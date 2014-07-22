@@ -14,14 +14,15 @@ IndexRoute = Ember.Route.extend
 		if not hamsterLocation
 			hamsterLocation = [1,1,0]
 		else
-			hamsterLocation = hamsterLocation.split ','
+			hamsterLocation = hamsterLocation.split(',').map (num) ->
+				parseInt num
 		carryCorn = localStorage.getItem('carryCorn')
 		if not carryCorn
 			carryCorn = 0
 		return Ember.Object.create
 			scratchpad: scratchpad
 			console: "Hello World"
-			playfield:
+			playfield: Ember.Object.create
 				grid: grid
 				hamsterLocation: hamsterLocation
 				carryCorn: carryCorn
