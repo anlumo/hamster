@@ -28,6 +28,11 @@ IndexController = Ember.Controller.extend
 			window.Hub.publish 'play'
 		reset: ->
 			@get('model').set 'playfield', Ember.Object.create Ember.copy @get('selectedTemplate'), true
+			window.Hub.publish 'stop'
+		stepIn: ->
+			window.Hub.publish 'stepIn'
+		stepOver: ->
+			window.Hub.publish 'stepOver'
 		rotate: ->
 			window.Hub.publish 'hamsterTurnLeft'
 		clearConsole: ->
