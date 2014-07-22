@@ -31,7 +31,7 @@ IndexController = Ember.Controller.extend
 		rotate: ->
 			window.Hub.publish 'hamsterTurnLeft'
 		clearConsole: ->
-			@get('model').set 'console', ""
+			@get('model').set 'logLines', Ember.A()
 		selectTemplate: (template) ->
 			localStorage.setItem 'selectedTemplate', JSON.stringify(template)
 			@set 'selectedTemplate', template
