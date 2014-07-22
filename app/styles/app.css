@@ -93,7 +93,7 @@
     background-position: 0% 0%;
 }
 
-.hamster-runtime > .console {
+.hamster-runtime > .console-wrapper {
     overflow: scroll;
     background-color: black;
 }
@@ -163,4 +163,13 @@
 
 .playfield_corn12 {
     background-image: url(../images/korn12.png);
+}
+
+.console {
+    font-family: Monaco, Menlo, 'Ubuntu Mono', Consolas, source-code-pro, monospace;
+    color: white;
+}
+
+.console span.error {
+    color: red;
 }

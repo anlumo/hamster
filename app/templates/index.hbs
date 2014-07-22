@@ -1,8 +1,6 @@
 {{#split-view isVertical=true class="hamster-view"}}
 	{{#split-child class="child"}}
-		<div class="hamster-editor">
-			{{ace-editor contentBinding="model.scratchpad"}}
-		</div>
+		{{render "editor" model}}
 	{{/split-child}}
 	{{split-sash class="sash"}}
 	{{#split-child class="compositeRight"}}
@@ -28,7 +26,8 @@
 				</div>
 			{{/split-child}}
 			{{split-sash class="sash"}}
-			{{#split-child class="console child"}}
+			{{#split-child class="console-wrapper child"}}
+				{{render "console" model}}
 			{{/split-child}}
 		{{/split-view}}
 	{{/split-child}}

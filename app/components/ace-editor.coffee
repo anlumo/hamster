@@ -3,6 +3,33 @@
 AceEditorComponent = Ember.Component.extend
 	classNames: ['editor']
 
+	cursorPosition: ((key, val) ->
+		if !@editor
+			return {row: 0, column: 0}
+
+		if arguments.length == 1
+			return @editor.selection.getCursor()
+
+		@editor.selection.clearSelection()
+		@editor.selection.moveCursorToPosition val
+		@editor.focus()
+
+		val
+	).property()
+
+	selection: ((key, val) ->
+		if !@editor
+			return {}
+
+		if arguments.length == 1
+			return @editor.selection.getRange()
+
+		@editor.selection.setSelectionRange val, true
+		@editor.focus()
+
+		val
+	).property()
+
 	content: ((key, val) ->
 		if !@editor
 			@preset = val
@@ -20,15 +47,23 @@ AceEditorComponent = Ember.Component.extend
 	didInsertElement: ->
 		@editor = window.ace.edit @elementId
 		@editor.getSession().setMode 'ace/mode/javascript'
+		@editor.setShowPrintMargin false
+		@editor.setHighlightActiveLine true
+		@editor.getSession().setUseWrapMode true
 
 		@editor.on 'change', =>
 			@notifyPropertyChange 'content'
+		@editor.getSession().selection.on 'changeCursor', =>
+			@notifyPropertyChange 'cursorPosition'
+		@editor.getSession().selection.on 'changeSelection', =>
+			@notifyPropertyChange 'selection'
 
 		if @preset
 			@set 'content', @preset
 			@preset = null
 
 			@resizeView()
+		@editor.focus()
 
 	resizeView: (->
 		renderer = @editor.renderer;

@@ -13,7 +13,7 @@ IndexController = Ember.Controller.extend
 
 	actions:
 		play: ->
-			console.log "Play!"
+			window.Hub.publish 'play'
 		clearConsole: ->
 			@get('model').set 'console', ""
 		selectTemplate: (newgrid) ->
