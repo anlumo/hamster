@@ -53,6 +53,24 @@ EditorController = Ember.Controller.extend
 
 	running: false
 
+	updateVariables: ->
+		stack = @context.getCallStack()
+		frame = stack[stack.length-1]
+		scope = frame.scope;
+
+		variables = Ember.A()
+
+		for obj in scope
+			value = frame.evalInScope(obj.name)
+			if value == undefined
+				description = "undefined"
+			else
+				description = value.toString()
+			variables.push
+				name: obj.name
+				description: description
+		@get('model').set 'variables', variables
+
 	play: ->
 		text = @get 'model.scratchpad'
 		context = @get 'context'
@@ -60,6 +78,7 @@ EditorController = Ember.Controller.extend
 		context.load text, 'scratchpad.js'
 		context.run()
 		@set 'running', false
+		@updateVariables()
 
 	stop: ->
 		context = @get 'context'
@@ -89,6 +108,7 @@ EditorController = Ember.Controller.extend
 						row: location.end.line - 1
 			else
 				@set 'highlightRange', null
+			@updateVariables()
 
 	stepIn: ->
 		@step "stepIn"

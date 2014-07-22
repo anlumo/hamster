@@ -1,6 +1,14 @@
 {{#split-view isVertical=true class="hamster-view"}}
-	{{#split-child class="child"}}
-		{{render "editor" model}}
+	{{#split-child}}
+		{{#split-view isVertical=false class="hamster-textpart"}}
+			{{#split-child class="child"}}
+				{{render "editor" model}}
+			{{/split-child}}
+			{{split-sash class="sash"}}
+			{{#split-child class="child"}}
+				{{view "variables"}}
+			{{/split-child}}
+		{{/split-view}}
 	{{/split-child}}
 	{{split-sash class="sash"}}
 	{{#split-child class="compositeRight"}}
