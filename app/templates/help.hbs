@@ -1,0 +1,50 @@
+<h1 class="E">Vorgegebene Methoden im Hamster-Simulator</h1>
+<p>In einem Programm des Hamster Simulators k&ouml;nnen folgende
+  Methoden (Befehle/Prozeduren) direkt benutzt werden:</p>
+<table border="1" cellspacing="0" cellpadding="2">
+  <tr>
+    <td valign="top" width="70"><b>vor();</b></td>
+    <td width="*">der Hamster geht ein Feld (eine Kachel) in Blickrichtung vorw&auml;rts</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>linksUm();</b></td>
+    <td>der Hamster dreht sich um 90&deg; nach links</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>rechtsUm();</b></td>
+    <td>der Hamster dreht sich um 90&deg; nach rechts</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>nimm();</b></td>
+    <td>der Hamster nimmt ein Korn von der Kachel, auf der er gerade steht, in
+      sein Maul</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>gib();</b></td>
+    <td>der Hamster l&auml;sst ein Korn aus seinem Maul auf die Kachel des Territoriums
+      fallen, auf der er gerade steht</td>
+  </tr>
+</table>
+<p>Neben diesen direkt verwendbaren Befehlen k&ouml;nnen folgende Methoden (Funktionen)
+  zur &Uuml;berpr&uuml;fung in Kontrollstrukturen benutzt werden:</p>
+<table border="1" cellspacing="0" cellpadding="2">
+  <tr>
+    <td valign="top" width="80"><b>vornFrei()</b></td>
+    <td width="*">liefert den Wahrheitswert true oder false, je nachdem, ob vor
+      dem Hamster noch ein freies Feld (ohne Mauer) ist</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>kornDa()</b></td>
+    <td>liefert den Wahrheitswert true oder false, je nachdem, ob auf dem Feld
+      des Hamsters (noch) ein Korn liegt</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>maulLeer()</b></td>
+    <td>liefert den Wahrheitswert true oder false, je nachdem, ob das Maul des
+      Hamsters leer ist oder nicht</td>
+  </tr>
+</table>
+<p>Die Kontrolle kann z.B. &uuml;ber eine bedingte Verzweigung erfolgen: &nbsp;&nbsp;if
+  (vornFrei()) vor();<br>
+  In diesem Fall geht der Hamster nur eine Kachel vorw&auml;rts, wenn dort &uuml;berhaupt
+  eine ist und sich auf der Kachel auch keine Mauer befindet.</p><p>Weitere Methoden:</p><table border="1" cellspacing="0" cellpadding="2">  <tr>    <td valign="top" width="150"><b>schreib(</b><i>Text</i><b>);</b></td>    <td width="*">Gibt den angegebenen Text in dem Konsolenfenster aus. Wenn eine andere Art von Variable angegeben wird, wird diese vorher in Text umgewandelt.</td>  </tr></table>
