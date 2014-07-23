@@ -14,25 +14,31 @@
 	{{#split-child class="compositeRight"}}
 		{{#split-view isVertical=false class="hamster-runtime"}}
 			{{#split-child class="stage"}}
-				<div class="toolbar btn-group">
-					<div class="btn cornCount"><img src="images/hamsterkorn24.png" alt="Corn"> {{model.playfield.carryCorn}}
-						<div class="btn-group-xs btn-group-vertical">
-							{{bs-button title="+" class="btn" clicked="addCorn"}}
-							{{bs-button title="-" class="btn" clicked="removeCorn"}}
+				<div class="toolbar">
+					<div class="btn-group">
+						<div class="btn cornCount"><img src="images/hamsterkorn24.png" alt="Corn"> {{model.playfield.carryCorn}}
+							<div class="btn-group-xs btn-group-vertical">
+								{{bs-button title="+" class="btn" clicked="addCorn"}}
+								{{bs-button title="-" class="btn" clicked="removeCorn"}}
+							</div>
 						</div>
 					</div>
-					{{#bs-button class="btn btn-default" clicked="play"}}<img src="icons/play.png" alt="Play" title="Play">{{/bs-button}}
-					{{#bs-button class="btn" clicked="reset"}}<img src="icons/delete.png" alt="Reset" title="Reset">{{/bs-button}}
-					{{#bs-button class="btn" clicked="stepIn"}}<img src="icons/stepin.png" alt="Step In" title="Step In">{{/bs-button}}
-					{{#bs-button class="btn" clicked="stepOver"}}<img src="icons/stepover.png" alt="Step Over" title="Step Over">{{/bs-button}}
-					{{#bs-button class="btn" clicked="rotate"}}<img src="icons/rotate.png" alt="Rotate" title="Rotate Hamster">{{/bs-button}}
+					<div class="btn-group">
+						{{#bs-button class="btn btn-default" clicked="play"}}<img src="icons/play.png" alt="Play" title="Play">{{/bs-button}}
+						{{#bs-button class="btn" clicked="reset"}}<img src="icons/delete.png" alt="Reset" title="Reset">{{/bs-button}}
+						{{#bs-button class="btn" clicked="stepIn"}}<img src="icons/stepin.png" alt="Step In" title="Step In">{{/bs-button}}
+						{{#bs-button class="btn" clicked="stepOver"}}<img src="icons/stepover.png" alt="Step Over" title="Step Over">{{/bs-button}}
+					</div>
+					<div class="btn-group">
+						{{#bs-button class="btn" clicked="rotate"}}<img src="icons/rotate.png" alt="Rotate" title="Rotate Hamster">{{/bs-button}}
 
-					<div class="btn-group">{{#bs-button class="switchPlayfield btn dropdown-toggle" data-toggle="dropdown"}}<img src="icons/choose.png" alt="Switch Playfield" title="Switch Playfield">{{/bs-button}}
-					<ul class="dropdown-menu" role="menu">
-						{{#each model.playfieldTemplates}}
-						<li class="menuitem"><a {{action 'selectTemplate' this}}>{{name}}</a></li>
-						{{/each}}
-					</ul>
+						<div class="btn-group">{{#bs-button class="switchPlayfield btn dropdown-toggle" data-toggle="dropdown"}}<img src="icons/choose.png" alt="Switch Playfield" title="Switch Playfield">{{/bs-button}}
+						<ul class="dropdown-menu" role="menu">
+							{{#each model.playfieldTemplates}}
+							<li class="menuitem"><a {{action 'selectTemplate' this}}>{{name}}</a></li>
+							{{/each}}
+						</ul>
+						</div>
 					</div>
 				</div>
 				<div class="playfield-container">
