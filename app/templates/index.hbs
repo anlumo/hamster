@@ -21,14 +21,13 @@
 							{{bs-button title="-" class="btn" clicked="removeCorn"}}
 						</div>
 					</div>
-					{{bs-button title="►︎" class="btn btn-default" clicked="play"}}
-					{{#bs-button class="btn" clicked="reset"}}<img src="images/loeschen24.gif" alt="Reset">{{/bs-button}}
-					{{bs-button title="Step In" class="btn" clicked="stepIn"}}
-					{{bs-button title="Step Over" class="btn" clicked="stepOver"}}
-					{{bs-button title="Clear Console" class="btn" clicked="clearConsole"}}
-					{{#bs-button class="btn" clicked="rotate"}}<img src="images/linksUm24.gif" alt="Rotate">{{/bs-button}}
+					{{#bs-button class="btn btn-default" clicked="play"}}<img src="icons/play.png" alt="Play" title="Play">{{/bs-button}}
+					{{#bs-button class="btn" clicked="reset"}}<img src="icons/delete.png" alt="Reset" title="Reset">{{/bs-button}}
+					{{#bs-button class="btn" clicked="stepIn"}}<img src="icons/stepin.png" alt="Step In" title="Step In">{{/bs-button}}
+					{{#bs-button class="btn" clicked="stepOver"}}<img src="icons/stepover.png" alt="Step Over" title="Step Over">{{/bs-button}}
+					{{#bs-button class="btn" clicked="rotate"}}<img src="icons/rotate.png" alt="Rotate" title="Rotate Hamster">{{/bs-button}}
 
-					<div class="btn-group">{{#bs-button class="switchPlayfield btn dropdown-toggle" data-toggle="dropdown"}}<img src="images/size24.gif" alt="Switch Playfield">{{/bs-button}}
+					<div class="btn-group">{{#bs-button class="switchPlayfield btn dropdown-toggle" data-toggle="dropdown"}}<img src="icons/choose.png" alt="Switch Playfield">{{/bs-button}}
 					<ul class="dropdown-menu" role="menu">
 						{{#each model.playfieldTemplates}}
 						<li class="menuitem"><a {{action 'selectTemplate' this}}>{{name}}</a></li>
@@ -42,7 +41,10 @@
 			{{/split-child}}
 			{{split-sash class="sash"}}
 			{{#split-child class="console-wrapper child"}}
-				{{outlet console}}
+				<div class="consoleScroller">
+					{{outlet console}}
+				</div>
+				{{#bs-button class="clearConsoleButton" clicked="clearConsole"}}<img src="icons/delete.png" alt="Clear" title="Clear Console">{{/bs-button}}
 			{{/split-child}}
 		{{/split-view}}
 	{{/split-child}}

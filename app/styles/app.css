@@ -87,7 +87,6 @@
 }
 
 .hamster-runtime > .console-wrapper {
-    overflow: scroll;
     background-color: black;
 }
 
@@ -233,4 +232,19 @@ table.variables-table tbody td:first-child {
 
 table.variables-table tbody tr:last-child td {
     border-bottom: none;
+}
+
+.consoleScroller {
+    overflow: scroll;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+}
+
+.clearConsoleButton {
+    position: absolute;
+    right: 0;
+    top: 0;
 }

@@ -4,7 +4,7 @@ ConsoleController = Ember.Controller.extend
 	setupDone: false
 	setup: ->
 		Ember.run.next ->
-			consoleElement = Ember.$('.console-wrapper')
+			consoleElement = Ember.$('.consoleScroller')
 			consoleElement.scrollTop consoleElement.prop 'scrollHeight'
 
 		if @setupDone
@@ -14,7 +14,7 @@ ConsoleController = Ember.Controller.extend
 
 	logHTML: (line) ->
 			logLines = @get 'model.logLines'
-			consoleElement = Ember.$('.console-wrapper')
+			consoleElement = Ember.$('.consoleScroller')
 			isScrolledBottom = Math.abs(consoleElement.scrollTop() + consoleElement.innerHeight() - consoleElement[0].scrollHeight) < 4
 
 			logLines.pushObject line
