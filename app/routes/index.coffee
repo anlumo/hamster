@@ -24,9 +24,15 @@ IndexRoute = Ember.Route.extend
 			logLines = Ember.A()
 		else
 			logLines = JSON.parse(logLines)
+		runSpeed = localStorage.getItem 'runSpeed'
+		if not runSpeed
+			runSpeed = 500
+		else
+			runSpeed = parseInt runSpeed
 		return Ember.Object.create
 			scratchpad: scratchpad
 			logLines: logLines
+			runSpeed: runSpeed
 			playfield: Ember.Object.create
 				grid: grid
 				hamsterLocation: hamsterLocation

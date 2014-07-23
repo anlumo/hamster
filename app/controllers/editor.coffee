@@ -55,6 +55,10 @@ EditorController = Ember.Controller.extend
 		window.Hub.subscribe 'stepIn', this, @stepIn
 		window.Hub.subscribe 'stepOver', this, @stepOver
 
+	runSpeedChanged: (->
+		localStorage.setItem 'runSpeed', @get 'model.runSpeed'
+	).observes 'model.runSpeed'
+
 	highlightLine: null
 
 	running: false
@@ -78,8 +82,17 @@ EditorController = Ember.Controller.extend
 		context = @get 'context'
 
 		context.load text, 'scratchpad.js'
-		context.run()
-		@set 'running', false
+
+		runSpeed = @get 'model.runSpeed'
+		if runSpeed < 1
+			context.run()
+			@set 'running', not context.machine.halted
+		else
+			timer = =>
+				@stepIn()
+				if not context.machine.halted
+					Ember.run.later this, timer, @get 'model.runSpeed' # runSpeed might have changed since the last time
+			timer()
 		@updateVariables()
 
 	stop: ->

@@ -6,11 +6,13 @@ IndexView = Ember.View.extend
 	didInsertElement: ->
 		@_super()
 
-		console.log Ember.$('.runSpeedSlider')
-		Ember.$('.runSpeedSlider').slider
+		slider = Ember.$('.runSpeedSlider').slider(
 			min: 0
-			max: 5000
-			value: 1000
-			formater: (val) -> val + " ms"
+			max: 2000
+			value: @get 'controller.model.runSpeed'
+			formater: (val) -> Math.round(val / 100) / 10 + " s"
+		).on 'slide', =>
+			value = slider.data('slider').getValue()
+			@get('controller.model').set 'runSpeed', value
 
 `export default IndexView`
