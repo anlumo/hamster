@@ -40,6 +40,10 @@
 						</ul>
 						</div>
 					</div>
+					<div class="btn-group">
+						{{#bs-button class="btn" clicked="load"}}<img src="icons/load.png" alt="Load Document" title="Load Document">{{/bs-button}}
+						{{#bs-button class="btn" clicked="save"}}<img src="icons/save.png" alt="Save Document" title="Save Document">{{/bs-button}}
+					</div>
 				</div>
 				<div class="playfield-container">
 					{{render "Playfield" model.playfield}}
@@ -55,3 +59,14 @@
 		{{/split-view}}
 	{{/split-child}}
 {{/split-view}}
+
+{{#bs-modal name="SaveDialog" fade=true footerButtonsBinding="saveDialogButtons" title="Save Document"}}
+<form class="form-horizontal" role="form" {{action 'saveDocumentAndDimiss' on="submit" bubbles=false}}>
+	<div class="form-group">
+		<label for="saveFilename" class="col-sm-4 control-label">File Name:</label>
+		<div class="col-sm-8">
+			{{input type="text" class="form-control" id="saveFilename" placeholder="example.js" value=saveFilename}}
+		</div>
+	</div>
+</form>
+{{/bs-modal}}

@@ -23,6 +23,17 @@ IndexController = Ember.Controller.extend
 		localStorage.setItem 'hamsterLocation', @get('model.playfield.hamsterLocation').join(',')
 	).observes 'model.playfield.hamsterLocation'
 
+	saveDialogButtons: [
+		Ember.Object.create
+			title: 'Save'
+			clicked: 'saveDocument'
+			dismiss: 'modal'
+			type: 'primary'
+		Ember.Object.create
+			title: 'Cancel'
+			dismiss: 'modal'
+	]
+
 	actions:
 		play: ->
 			window.Hub.publish 'play'
@@ -46,5 +57,44 @@ IndexController = Ember.Controller.extend
 		removeCorn: ->
 			if @get('model.playfield.carryCorn') > 0
 				@get('model.playfield').decrementProperty 'carryCorn'
+
+		load: ->
+			fileSelector = Ember.$ '<input type="file" accept="application/javascript">'
+			fileSelector.on 'change', (evt) =>
+				if evt.target.files.length == 1
+					file = evt.target.files[0]
+					reader = new FileReader()
+					reader.onload = =>
+						@get('model').set 'scratchpad', reader.result
+						window.Hub.publish 'stop'
+					reader.onerror = ->
+						window.Hub.publish 'logHTML', '<span class="error">Failed loading document: <em>' + reader.error.message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br>") + '</em></span>'
+					reader.readAsText(file)
+			fileSelector.click()
+		save: ->
+			saveFilename = localStorage.getItem 'saveFilename'
+			if not saveFilename
+				saveFilename = 'scratchpad.js'
+
+			@set 'saveFilename', saveFilename
+			window.Bootstrap.ModalManager.show 'SaveDialog'
+			Ember.run.next ->
+				Ember.$('#saveFilename').focus()
+		saveDocumentAndDimiss: ->
+			window.Bootstrap.ModalManager.hide 'SaveDialog'
+			@send 'saveDocument'
+		saveDocument: ->
+			saveFilename = @get 'saveFilename'
+			if not saveFilename
+				saveFilename = 'scratchpad.js'
+			else if not /\.js$/.test(saveFilename)
+				saveFilename += '.js'
+			@set 'saveFilename', saveFilename
+
+			localStorage.setItem 'saveFilename', saveFilename
+			save = document.createElement 'a'
+			save.setAttribute 'download', saveFilename
+			save.href = 'data:application/javascript;charset=utf-8,' + encodeURIComponent @get('model.scratchpad')
+			save.click();
 
 `export default IndexController`
