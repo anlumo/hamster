@@ -44,6 +44,9 @@
 						{{#bs-button class="btn" clicked="load"}}<img src="icons/load.png" alt="Load Document" title="Load Document">{{/bs-button}}
 						{{#bs-button class="btn" clicked="save"}}<img src="icons/save.png" alt="Save Document" title="Save Document">{{/bs-button}}
 					</div>
+					<div class="btn-group runSpeedSliderWrapper">
+						Speed: <input type="text" class="runSpeedSlider" value="4">
+					</div>
 				</div>
 				<div class="playfield-container">
 					{{render "Playfield" model.playfield}}

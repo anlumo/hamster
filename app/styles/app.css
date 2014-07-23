@@ -248,3 +248,7 @@ table.variables-table tbody tr:last-child td {
     right: 0;
     top: 0;
 }
+
+.runSpeedSliderWrapper {
+    margin: 10px;
+}

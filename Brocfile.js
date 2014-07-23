@@ -38,5 +38,11 @@ var bootstrapForEmber = pickFiles('vendor/ember-addons.bs_for_ember/dist/js/', {
     destDir: '/assets'
 });
 
+var bootstrapSlider = pickFiles('public/', {
+	srcDir: '/',
+	files: ['bootstrap-slider.js', 'slider.css'],
+	destDir: '/assets'
+});
+
 var mergeTrees = require('broccoli-merge-trees');
-module.exports = mergeTrees([app.toTree(), aceEditor, bootstrapForEmber]);
+module.exports = mergeTrees([app.toTree(), aceEditor, bootstrapForEmber, bootstrapSlider]);
