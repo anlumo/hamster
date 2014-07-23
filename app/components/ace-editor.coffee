@@ -3,6 +3,7 @@
 AceEditorComponent = Ember.Component.extend
 	classNames: ['editor']
 
+	readonly: false
 	highlightRange: null
 
 	cursorPosition: ((key, val) ->
@@ -87,5 +88,14 @@ AceEditorComponent = Ember.Component.extend
 		else
 			@oldHighlightLine = null
 	).observes 'highlightRange'
+
+	readonlyChanged: (->
+		readonly = @get 'readonly'
+		@editor.setReadOnly readonly
+		if readonly
+			Ember.$('.ace_content').css 'background-color', '#ddd'
+		else
+			Ember.$('.ace_content').css 'background-color', 'white'
+	).observes 'readonly'
 
 `export default AceEditorComponent`
