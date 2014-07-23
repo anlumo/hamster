@@ -23,6 +23,16 @@ IndexController = Ember.Controller.extend
 		localStorage.setItem 'hamsterLocation', @get('model.playfield.hamsterLocation').join(',')
 	).observes 'model.playfield.hamsterLocation'
 
+	mainSplitviewChanged: (->
+		localStorage.setItem 'mainSplitview', @get 'model.mainSplitview'
+	).observes 'model.mainSplitview'
+	editorSplitviewChanged: (->
+		localStorage.setItem 'editorSplitview', @get 'model.editorSplitview'
+	).observes 'model.editorSplitview'
+	playfieldSplitviewChanged: (->
+		localStorage.setItem 'playfieldSplitview', @get 'model.playfieldSplitview'
+	).observes 'model.playfieldSplitview'
+
 	saveDialogButtons: [
 		Ember.Object.create
 			title: 'Save'

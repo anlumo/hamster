@@ -29,11 +29,35 @@ IndexRoute = Ember.Route.extend
 			runSpeed = 500
 		else
 			runSpeed = parseInt runSpeed
+		mainSplitview = localStorage.getItem 'mainSplitview'
+		if not mainSplitview
+			mainSplitview = 50
+		else
+			mainSplitview = parseInt mainSplitview
+		mainSplitview = localStorage.getItem 'mainSplitview'
+		if not mainSplitview
+			mainSplitview = 50
+		else
+			mainSplitview = parseInt mainSplitview
+		editorSplitview = localStorage.getItem 'editorSplitview'
+		if not editorSplitview
+			editorSplitview = 75
+		else
+			editorSplitview = parseInt editorSplitview
+		playfieldSplitview = localStorage.getItem 'playfieldSplitview'
+		if not playfieldSplitview
+			playfieldSplitview = 75
+		else
+			playfieldSplitview = parseInt playfieldSplitview
+
 		return Ember.Object.create
 			scratchpad: scratchpad
 			logLines: logLines
 			runSpeed: runSpeed
 			playMode: false
+			mainSplitview: mainSplitview
+			editorSplitview: editorSplitview
+			playfieldSplitview: playfieldSplitview
 			playfield: Ember.Object.create
 				grid: grid
 				hamsterLocation: hamsterLocation

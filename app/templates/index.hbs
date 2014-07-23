@@ -1,6 +1,6 @@
-{{#split-view isVertical=true class="hamster-view"}}
+{{#split-view isVertical=true class="hamster-view" splitPercentage=model.mainSplitview}}
 	{{#split-child}}
-		{{#split-view isVertical=false class="hamster-textpart"}}
+		{{#split-view isVertical=false class="hamster-textpart" splitPercentage=model.editorSplitview}}
 			{{#split-child class="child"}}
 				{{outlet editor}}
 			{{/split-child}}
@@ -12,7 +12,7 @@
 	{{/split-child}}
 	{{split-sash class="sash"}}
 	{{#split-child class="compositeRight"}}
-		{{#split-view isVertical=false class="hamster-runtime"}}
+		{{#split-view isVertical=false class="hamster-runtime" splitPercentage=model.playfieldSplitview}}
 			{{#split-child class="stage"}}
 				<div class="toolbar">
 					<div class="btn-group">
