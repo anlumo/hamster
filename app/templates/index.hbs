@@ -27,7 +27,7 @@
 					{{#bs-button class="btn" clicked="stepOver"}}<img src="icons/stepover.png" alt="Step Over" title="Step Over">{{/bs-button}}
 					{{#bs-button class="btn" clicked="rotate"}}<img src="icons/rotate.png" alt="Rotate" title="Rotate Hamster">{{/bs-button}}
 
-					<div class="btn-group">{{#bs-button class="switchPlayfield btn dropdown-toggle" data-toggle="dropdown"}}<img src="icons/choose.png" alt="Switch Playfield">{{/bs-button}}
+					<div class="btn-group">{{#bs-button class="switchPlayfield btn dropdown-toggle" data-toggle="dropdown"}}<img src="icons/choose.png" alt="Switch Playfield" title="Switch Playfield">{{/bs-button}}
 					<ul class="dropdown-menu" role="menu">
 						{{#each model.playfieldTemplates}}
 						<li class="menuitem"><a {{action 'selectTemplate' this}}>{{name}}</a></li>
