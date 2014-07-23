@@ -37,6 +37,8 @@ IndexController = Ember.Controller.extend
 	actions:
 		play: ->
 			window.Hub.publish 'play'
+		pause: ->
+			window.Hub.publish 'pause'
 		reset: ->
 			@get('model').set 'playfield', Ember.Object.create Ember.copy @get('selectedTemplate'), true
 			window.Hub.publish 'stop'

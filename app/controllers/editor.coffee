@@ -51,6 +51,7 @@ EditorController = Ember.Controller.extend
 
 		@set 'context', context
 		window.Hub.subscribe 'play', this, @play
+		window.Hub.subscribe 'pause', this, @pause
 		window.Hub.subscribe 'stop', this, @stop
 		window.Hub.subscribe 'stepIn', this, @stepIn
 		window.Hub.subscribe 'stepOver', this, @stepOver
@@ -77,28 +78,31 @@ EditorController = Ember.Controller.extend
 				description: JSON.stringify value
 		@get('model').set 'variables', variables
 
+	playModeTimer: null
 	play: ->
-		text = @get 'model.scratchpad'
 		context = @get 'context'
+		@get('model').set 'playMode', true
 
-		context.load text, 'scratchpad.js'
+		timer = =>
+			@stepIn()
+			if not context.machine.halted
+				@playModeTimer = Ember.run.later this, timer, @get 'model.runSpeed' # runSpeed might have changed since the last time
+			else
+				@get('model').set 'playMode', false
+		timer()
 
-		runSpeed = @get 'model.runSpeed'
-		if runSpeed < 1
-			context.run()
-			@set 'running', not context.machine.halted
-		else
-			timer = =>
-				@stepIn()
-				if not context.machine.halted
-					Ember.run.later this, timer, @get 'model.runSpeed' # runSpeed might have changed since the last time
-			timer()
-		@updateVariables()
+	pause: ->
+		if @playModeTimer
+			Ember.run.cancel @playModeTimer
+			@get('model').set 'playMode', false
 
 	stop: ->
 		context = @get 'context'
 		@set 'running', false
+		@get('model').set 'playMode', false
 		@set 'highlightRange', null
+		if @playModeTimer
+			Ember.run.cancel @playModeTimer
 
 	step: (type) ->
 		context = @get 'context'

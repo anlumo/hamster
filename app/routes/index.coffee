@@ -33,6 +33,7 @@ IndexRoute = Ember.Route.extend
 			scratchpad: scratchpad
 			logLines: logLines
 			runSpeed: runSpeed
+			playMode: false
 			playfield: Ember.Object.create
 				grid: grid
 				hamsterLocation: hamsterLocation

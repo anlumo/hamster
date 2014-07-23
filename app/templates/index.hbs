@@ -24,7 +24,11 @@
 						</div>
 					</div>
 					<div class="btn-group">
-						{{#bs-button class="btn btn-default" clicked="play"}}<img src="icons/play.png" alt="Play" title="Play">{{/bs-button}}
+						{{#if model.playMode}}
+							{{#bs-button class="btn btn-default" clicked="pause"}}<img src="icons/pause.png" alt="Pause" title="Pause">{{/bs-button}}
+						{{else}}
+							{{#bs-button class="btn btn-default" clicked="play"}}<img src="icons/play.png" alt="Play" title="Play">{{/bs-button}}
+						{{/if}}
 						{{#bs-button class="btn" clicked="reset"}}<img src="icons/delete.png" alt="Reset" title="Reset">{{/bs-button}}
 						{{#bs-button class="btn" clicked="stepIn"}}<img src="icons/stepin.png" alt="Step In" title="Step In">{{/bs-button}}
 						{{#bs-button class="btn" clicked="stepOver"}}<img src="icons/stepover.png" alt="Step Over" title="Step Over">{{/bs-button}}
