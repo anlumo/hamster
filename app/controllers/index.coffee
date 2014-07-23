@@ -100,8 +100,10 @@ IndexController = Ember.Controller.extend
 				type: 'application/javascript'
 			save.href = URL.createObjectURL blob
 
-			event = document.createEvent 'Event'
-			event.initEvent 'click', true, true
+			event = new MouseEvent 'click',
+				view: window
+				bubbles: true
+				cancelable: false
 			save.dispatchEvent event
 			false
 
