@@ -80,9 +80,11 @@ IndexController = Ember.Controller.extend
 			window.Bootstrap.ModalManager.show 'SaveDialog'
 			Ember.run.next ->
 				Ember.$('#saveFilename').focus()
+			false
 		saveDocumentAndDimiss: ->
 			window.Bootstrap.ModalManager.hide 'SaveDialog'
 			@send 'saveDocument'
+			false
 		saveDocument: ->
 			saveFilename = @get 'saveFilename'
 			if not saveFilename
@@ -94,7 +96,13 @@ IndexController = Ember.Controller.extend
 			localStorage.setItem 'saveFilename', saveFilename
 			save = document.createElement 'a'
 			save.setAttribute 'download', saveFilename
-			save.href = 'data:application/javascript;charset=utf-8,' + encodeURIComponent @get('model.scratchpad')
-			save.click();
+			blob = new Blob [@get('model.scratchpad')],
+				type: 'application/javascript'
+			save.href = URL.createObjectURL blob
+
+			event = document.createEvent 'Event'
+			event.initEvent 'click', true, true
+			save.dispatchEvent event
+			false
 
 `export default IndexController`
