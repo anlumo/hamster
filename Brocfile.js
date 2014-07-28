@@ -38,7 +38,7 @@ var bootstrapForEmber = pickFiles('vendor/ember-addons.bs_for_ember/dist/js/', {
     destDir: '/assets'
 });
 
-var bootstrapSlider = pickFiles('public/', {
+var bootstrapSlider = pickFiles('app/slider/', {
 	srcDir: '/',
 	files: ['bootstrap-slider.js', 'slider.css'],
 	destDir: '/assets'
