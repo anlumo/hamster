@@ -60,6 +60,7 @@ IndexController = Ember.Controller.extend
 			window.Hub.publish 'hamsterTurnLeft'
 		clearConsole: ->
 			@get('model').set 'logLines', Ember.A()
+			localStorage.removeItem 'logLines'
 		selectTemplate: (template) ->
 			localStorage.setItem 'selectedTemplate', JSON.stringify(template)
 			@set 'selectedTemplate', template
