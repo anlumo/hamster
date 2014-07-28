@@ -34,7 +34,7 @@ var aceEditor = pickFiles('vendor/ace-builds/src-noconflict/', {
 
 var bootstrapForEmber = pickFiles('vendor/ember-addons.bs_for_ember/dist/js/', {
     srcDir: '/',
-    files: ['bs-core.max.js', 'bs-basic.max.js', 'bs-modal.max.js', 'bs-button.max.js'],
+    files: ['bs-core.min.js', 'bs-basic.min.js', 'bs-modal.min.js', 'bs-button.min.js'],
     destDir: '/assets'
 });
 
