@@ -5,7 +5,7 @@ PlayfieldView = Ember.View.extend
 
 	updateHamsterPosition: (->
 		hamster = Ember.$('.playfield_hamster')
-		pos = @get 'controller.model.hamsterLocation'
+		pos = @get 'controller.model.playfield.hamsterLocation'
 		if not pos
 			return
 
@@ -16,7 +16,7 @@ PlayfieldView = Ember.View.extend
 		hamster.css '-moz-transform', transform
 		hamster.css '-o-transform', transform
 		hamster.css '-ms-transform', transform
-	).observes 'controller.model.hamsterLocation'
+	).observes 'controller.model.playfield.hamsterLocation'
 
 	didInsertElement: (->
 		@updateHamsterPosition()

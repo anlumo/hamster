@@ -316,6 +316,13 @@ IndexRoute = Ember.Route.extend
 			outlet: 'console'
 			into: 'index'
 			controller: consoleC
+		playfield = @container.lookup 'controller:playfield'
+		playfield.set 'model', model
+		playfield.setup()
+		@render 'playfield',
+			outlet: 'playfield'
+			into: 'index'
+			controller: playfield
 
 
 `export default IndexRoute`

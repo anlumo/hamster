@@ -1,7 +1,10 @@
 `import Ember from 'ember'`
 
 PlayfieldController = Ember.Controller.extend
-	init: ->
+	setup: ->
+		if @setupDone
+			return
+		@setupDone = true
 		window.Hub.subscribe 'hamsterForward', @forward.bind this
 		window.Hub.subscribe 'hamsterTurnLeft', @turnLeft.bind this
 		window.Hub.subscribe 'hamsterTurnRight', @turnRight.bind this
@@ -11,7 +14,7 @@ PlayfieldController = Ember.Controller.extend
 		window.Hub.subscribe 'hamsterHasCorn', @hasCorn.bind this
 
 	bricks: (->
-		grid = @get 'model.grid'
+		grid = @get 'model.playfield.grid'
 		bricks = Ember.A()
 		if not grid
 			return bricks
@@ -23,10 +26,10 @@ PlayfieldController = Ember.Controller.extend
 					bricks.push [x,y]
 
 		return bricks
-	).property 'model.grid'
+	).property 'model.playfield.grid'
 
 	corn: (->
-		grid = @get 'model.grid'
+		grid = @get 'model.playfield.grid'
 		corn = Ember.A()
 		if not grid
 			return corn
@@ -41,22 +44,22 @@ PlayfieldController = Ember.Controller.extend
 						count: parseInt(line[x], 13)
 
 		return corn
-	).property 'model.grid'
+	).property 'model.playfield.grid'
 
 	playfieldwidth: (->
-		if not @get('model.grid')
+		if not @get('model.playfield.grid')
 			return 0
-		(1+@get('model.grid')[0].length) * 32
-	).property 'model.grid'
+		(1+@get('model.playfield.grid')[0].length) * 32
+	).property 'model.playfield.grid'
 
 	playfieldheight: (->
-		if not @get('model.grid')
+		if not @get('model.playfield.grid')
 			return 0
-		(1+@get('model.grid').length) * 32
-	).property 'model.grid'
+		(1+@get('model.playfield.grid').length) * 32
+	).property 'model.playfield.grid'
 
 	forwardLocation: ->
-		hamsterLocation = @get 'model.hamsterLocation'
+		hamsterLocation = @get 'model.playfield.hamsterLocation'
 		x = hamsterLocation[0]
 		y = hamsterLocation[1]
 
@@ -75,32 +78,32 @@ PlayfieldController = Ember.Controller.extend
 		hamsterLocation = @forwardLocation()
 		x = hamsterLocation[0]
 		y = hamsterLocation[1]
-		if @get('model.grid')[y][x] == '#'
+		if @get('model.playfield.grid')[y][x] == '#'
 			throw new Error("Hit the wall!")
 
-		@get('model').set 'hamsterLocation', [x, y, hamsterLocation[2]]
+		@get('model.playfield').set 'hamsterLocation', [x, y, hamsterLocation[2]]
 
 	turnLeft: ->
-		hamsterLocation = Ember.copy @get('model.hamsterLocation'), true
+		hamsterLocation = Ember.copy @get('model.playfield.hamsterLocation'), true
 		if hamsterLocation[2] > 0
 			hamsterLocation[2] = hamsterLocation[2]-90
 		else
 			hamsterLocation[2] = 270
-		@get('model').set 'hamsterLocation', hamsterLocation
+		@get('model.playfield').set 'hamsterLocation', hamsterLocation
 
 	turnRight: ->
-		hamsterLocation = Ember.copy @get('model.hamsterLocation'), true
+		hamsterLocation = Ember.copy @get('model.playfield.hamsterLocation'), true
 		if hamsterLocation[2] < 270
 			hamsterLocation[2] = hamsterLocation[2]+90
 		else
 			hamsterLocation[2] = 0
-		@get('model').set 'hamsterLocation', hamsterLocation
+		@get('model.playfield').set 'hamsterLocation', hamsterLocation
 
 	pickUp: ->
-		hamsterLocation = @get 'model.hamsterLocation'
+		hamsterLocation = @get 'model.playfield.hamsterLocation'
 		x = hamsterLocation[0]
 		y = hamsterLocation[1]
-		grid = @get 'model.grid'
+		grid = @get 'model.playfield.grid'
 
 		cornCount = parseInt(grid[y][x], 13)
 		if cornCount > 0
@@ -109,18 +112,18 @@ PlayfieldController = Ember.Controller.extend
 				grid[y] = line.substr(0, x) + " " + line.substr(x + 1)
 			else
 				grid[y] = line.substr(0, x) + (cornCount-1).toString(13) + line.substr(x + 1)
-			@get('model').incrementProperty 'carryCorn'
-			@get('model').notifyPropertyChange 'grid'
+			@get('model.playfield').incrementProperty 'carryCorn'
+			@get('model.playfield').notifyPropertyChange 'grid'
 		else
 			throw new Error("Tried to pick up corn on an empty field.")
 
 	give: ->
-		hamsterLocation = @get 'model.hamsterLocation'
+		hamsterLocation = @get 'model.playfield.hamsterLocation'
 		x = hamsterLocation[0]
 		y = hamsterLocation[1]
-		grid = @get 'model.grid'
+		grid = @get 'model.playfield.grid'
 
-		cornCount = @get 'model.carryCorn'
+		cornCount = @get 'model.playfield.carryCorn'
 		if cornCount > 0
 			fieldCorn = parseInt(grid[y][x], 13)
 			line = grid[y]
@@ -129,21 +132,21 @@ PlayfieldController = Ember.Controller.extend
 			else if fieldCorn < 12
 				grid[y] = line.substr(0, x) + (fieldCorn+1).toString(13) + line.substr(x + 1)
 
-			@get('model').notifyPropertyChange 'grid'
-			@get('model').decrementProperty 'carryCorn'
+			@get('model.playfield').notifyPropertyChange 'grid'
+			@get('model.playfield').decrementProperty 'carryCorn'
 		else
 			throw new Error("Tried to give corn, but don't have any.")
 
 	hasCorn: (handler) ->
-		hamsterLocation = @get 'model.hamsterLocation'
+		hamsterLocation = @get 'model.playfield.hamsterLocation'
 		x = hamsterLocation[0]
 		y = hamsterLocation[1]
-		handler(not isNaN parseInt @get('model.grid')[y][x], 13)
+		handler(not isNaN parseInt @get('model.playfield.grid')[y][x], 13)
 
 	canMoveForward: (handler) ->
 		hamsterLocation = @forwardLocation()
 		x = hamsterLocation[0]
 		y = hamsterLocation[1]
-		handler(@get('model.grid')[y][x] != '#')
+		handler(@get('model.playfield.grid')[y][x] != '#')
 
 `export default PlayfieldController`
