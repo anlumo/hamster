@@ -317,7 +317,6 @@ IndexRoute = Ember.Route.extend
 					name: "Task 4.2"
 					generator: ->
 						corridorLength = Math.floor(Math.random() * 17) + 3
-						console.log 'corridorLength = ' + corridorLength
 						floor = '#'
 						for i in [0...corridorLength]
 							count = Math.floor(Math.random() * 12)
