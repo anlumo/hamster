@@ -387,6 +387,31 @@ IndexRoute = Ember.Route.extend
 							carryCorn: 0
 						}
 				}
+				{
+					name: "Task 4.7"
+					generator: ->
+						mountainSize = Math.floor(Math.random() * 12) + 3
+						size = [
+							5 + (mountainSize-1)*2
+							1 + mountainSize
+						]
+						grid = [ new Array(size[0] + 3).join '#' ]
+						for y in [0...size[1]]
+							floor = '#'
+							for x in [0...size[0]]
+								if x - 1 > size[1] - y && size[0] - x > size[1] - y
+									floor += '1'
+								else
+									floor += ' '
+							grid.push floor + '#'
+						grid.push grid[0]
+
+						{
+							grid: grid
+							hamsterLocation: [ 2, size[1], 0 ]
+							carryCorn: 0
+						}
+				}
 			]
 
 	renderTemplate: (controller, model) ->
