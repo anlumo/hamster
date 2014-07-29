@@ -345,7 +345,7 @@ IndexRoute = Ember.Route.extend
 						]
 						grid = [ new Array(size[0] + 3).join '#' ]
 
-						for y in [0..size[1]]
+						for y in [0...size[1]]
 							floor = '#'
 							for x in [0...size[0]]
 								count = Math.floor(Math.random() * 12)
