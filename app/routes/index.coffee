@@ -298,6 +298,21 @@ IndexRoute = Ember.Route.extend
 					hamsterLocation: [1, 1, 0]
 					carryCorn: 100
 				}
+				{
+					name: "Task 4.1"
+					generator: ->
+						corridorLength = Math.floor(Math.random() * 17) + 3
+						{
+							grid: [
+								Array(corridorLength + 3).join '#'
+								'#' + (Array(corridorLength + 1).join ' ') + '#'
+								Array(corridorLength + 3).join '#'
+							]
+
+							hamsterLocation: [ Math.floor(Math.random() * corridorLength) + 1, 1, Math.floor(Math.random() * 4) * 90 ]
+							carryCorn: 0
+						}
+				}
 			]
 
 	renderTemplate: (controller, model) ->

@@ -62,6 +62,9 @@ IndexController = Ember.Controller.extend
 			@get('model').set 'logLines', Ember.A()
 			localStorage.removeItem 'logLines'
 		selectTemplate: (template) ->
+			if template.generator
+				template = template.generator()
+			
 			localStorage.setItem 'selectedTemplate', JSON.stringify(template)
 			@set 'selectedTemplate', template
 			@get('model').set 'playfield', Ember.Object.create Ember.copy template, true
