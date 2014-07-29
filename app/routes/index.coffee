@@ -412,6 +412,83 @@ IndexRoute = Ember.Route.extend
 							carryCorn: 0
 						}
 				}
+				{
+					name: "Task 4.8"
+					generator: ->
+						# Labyrinth
+						size = [
+							Math.floor(Math.random() * 17) + 5
+							Math.floor(Math.random() * 17) + 5
+						]
+						maze = []
+						for y in [0...size[1]]
+							line = []
+							for x in [0...size[0]]
+								line.push '#'
+							maze.push line
+						start = [ Math.floor(Math.random() * (size[0]-2))+1, Math.floor(Math.random() * (size[1]-2))+1, -> true ]
+
+						stack = []
+						current = start
+
+						left = (x, y) ->
+							maze[y][x - 1] == '#' && maze[y][x - 2] == '#' &&
+							maze[y - 1][x - 1] == '#' && maze[y + 1][x - 1] == '#' &&
+							maze[y - 1][x - 2] == '#' && maze[y + 1][x - 2] == '#'
+						right = (x, y) ->
+							maze[y][x + 1] == '#' && maze[y][x + 2] == '#' &&
+							maze[y - 1][x + 1] == '#' && maze[y + 1][x + 1] == '#' &&
+							maze[y - 1][x + 2] == '#' && maze[y + 1][x + 2] == '#'
+						top = (x, y) ->
+							maze[y - 1][x] == '#' && maze[y - 2][x] == '#' &&
+							maze[y - 1][x - 1] == '#' && maze[y - 1][x + 1] == '#' &&
+							maze[y - 2][x - 1] == '#' && maze[y - 2][x + 1] == '#'
+						bottom = (x, y) ->
+							maze[y + 1][x] == '#' && maze[y + 2][x] == '#' &&
+							maze[y + 1][x - 1] == '#' && maze[y + 1][x + 1] == '#' &&
+							maze[y + 2][x - 1] == '#' && maze[y + 2][x + 1] == '#'
+						loop
+							maze[current[1]][current[0]] = ' '
+							neighbors = []
+							# left
+							if current[0] > 1 && current[1] > 0 && current[1] < size[1]-1 && left(current[0], current[1])
+								neighbors.push [current[0] - 1, current[1], left.bind(this, current[0], current[1])]
+							# right
+							if current[0] < size[0] - 2 && current[1] > 0 && current[1] < size[1]-1 && right(current[0], current[1])
+								neighbors.push [current[0] + 1, current[1], right.bind(this, current[0], current[1])]
+							# top
+							if current[1] > 1 && current[0] > 0 && current[0] < size[0]-1 && top(current[0], current[1])
+									neighbors.push [current[0], current[1] - 1, top.bind(this, current[0], current[1])]
+							# bottom
+							if current[1] < size[1] - 2 && current[0] > 0 && current[0] < size[0]-1 && bottom(current[0], current[1])
+								neighbors.push [current[0], current[1] + 1, bottom.bind(this, current[0], current[1])]
+							if neighbors.length == 0
+								current = null
+								while not current and stack.length > 0
+									current = stack.pop()
+									if not current[2]()
+										current = null
+								if not current
+									break
+							else
+								pick = Math.floor(Math.random() * neighbors.length)
+								for neighbor, i in neighbors when i != pick
+									stack.push neighbor
+								current = neighbors[pick]
+						loop
+							location = [Math.floor(Math.random() * (size[0]-2))+1, Math.floor(Math.random() * (size[1]-2))+1]
+							if maze[location[1]][location[0]] == ' '
+								maze[location[1]][location[0]] = '1'
+								break
+						
+						for line, y in maze
+							maze[y] = line.join ''
+						{
+							grid: maze
+							hamsterLocation: [ start[0], start[1], Math.floor(Math.random() * 4) * 90 ]
+							carryCorn: 0
+						}
+				}
 			]
 
 	renderTemplate: (controller, model) ->
