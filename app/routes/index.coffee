@@ -336,6 +336,32 @@ IndexRoute = Ember.Route.extend
 							carryCorn: 0
 						}
 				}
+				{
+					name: "Task 4.3/4.4"
+					generator: ->
+						size = [
+							Math.floor(Math.random() * 17) + 3
+							Math.floor(Math.random() * 17) + 3
+						]
+						grid = [ new Array(size[0] + 3).join '#' ]
+
+						for y in [0..size[1]]
+							floor = '#'
+							for x in [0...size[0]]
+								count = Math.floor(Math.random() * 12)
+								if count == 0
+									floor += ' '
+								else
+									floor += count.toString(13)
+							grid.push floor + '#'
+						grid.push grid[0]
+
+						{
+							grid: grid
+							hamsterLocation: [ Math.floor(Math.random() * size[0]) + 1, Math.floor(Math.random() * size[1]) + 1, Math.floor(Math.random() * 4) * 90 ]
+							carryCorn: 0
+						}
+				}
 			]
 
 	renderTemplate: (controller, model) ->
