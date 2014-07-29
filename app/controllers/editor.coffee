@@ -113,6 +113,19 @@ EditorController = Ember.Controller.extend
 				text = @get 'model.scratchpad'
 				context.load text, 'scratchpad.js'
 				context.machine.step()
+			@updateVariables()
+		catch e
+			# js compiler error!
+
+			@set 'selection',
+				start:
+					column: 0
+					row: e.lineNumber - 1
+				end:
+					column: 0
+					row: e.lineNumber
+
+			window.Hub.publish 'logHTML', '<span class="error"><em>' + e.message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br>") + '</em></span>'
 		finally
 			running = not context.machine.halted
 			@set 'running', running
@@ -127,7 +140,6 @@ EditorController = Ember.Controller.extend
 						row: location.end.line - 1
 			else
 				@set 'highlightRange', null
-			@updateVariables()
 
 	stepIn: ->
 		@step "stepIn"
