@@ -285,7 +285,7 @@ IndexRoute = Ember.Route.extend
 					carryCorn: 0
 				}
 				{
-					name: "Empty 20x5"
+					name: "Empty 21x5"
 					grid: [
 						"#####################"
 						"#                   #"
