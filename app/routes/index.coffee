@@ -304,9 +304,33 @@ IndexRoute = Ember.Route.extend
 						corridorLength = Math.floor(Math.random() * 17) + 3
 						{
 							grid: [
-								Array(corridorLength + 3).join '#'
+								new Array(corridorLength + 3).join '#'
 								'#' + (Array(corridorLength + 1).join ' ') + '#'
-								Array(corridorLength + 3).join '#'
+								new Array(corridorLength + 3).join '#'
+							]
+
+							hamsterLocation: [ Math.floor(Math.random() * corridorLength) + 1, 1, Math.floor(Math.random() * 4) * 90 ]
+							carryCorn: 0
+						}
+				}
+				{
+					name: "Task 4.2"
+					generator: ->
+						corridorLength = Math.floor(Math.random() * 17) + 3
+						console.log 'corridorLength = ' + corridorLength
+						floor = '#'
+						for i in [0...corridorLength]
+							count = Math.floor(Math.random() * 12)
+							if count == 0
+								floor += ' '
+							else
+								floor += count.toString(13)
+
+						{
+							grid: [
+								new Array(corridorLength + 3).join '#'
+								floor + '#'
+								new Array(corridorLength + 3).join '#'
 							]
 
 							hamsterLocation: [ Math.floor(Math.random() * corridorLength) + 1, 1, Math.floor(Math.random() * 4) * 90 ]
