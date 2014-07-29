@@ -120,7 +120,7 @@ IndexRoute = Ember.Route.extend
 					carryCorn: 0
 				}
 				{
-					name: "Task 5"
+					name: "Terrain 5"
 					grid: [
 						"########"
 						"#  #   #"
