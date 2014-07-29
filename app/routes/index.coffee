@@ -64,7 +64,7 @@ IndexRoute = Ember.Route.extend
 				carryCorn: carryCorn
 			playfieldTemplates: [
 				{
-					name: "Task 1"
+					name: "Terrain 1"
 					grid: [
 						"####################"
 						"#           #      #"
@@ -79,7 +79,7 @@ IndexRoute = Ember.Route.extend
 					carryCorn: 0
 				}
 				{
-					name: "Task 2"
+					name: "Terrain 2"
 					grid: [
 						"########"
 						"#      #"
@@ -92,7 +92,7 @@ IndexRoute = Ember.Route.extend
 					carryCorn: 4
 				}
 				{
-					name: "Task 3"
+					name: "Terrain 3"
 					grid: [
 						"#############"
 						"#           #"
@@ -107,7 +107,7 @@ IndexRoute = Ember.Route.extend
 					carryCorn: 0
 				}
 				{
-					name: "Task 4"
+					name: "Terrain 4"
 					grid: [
 						"########"
 						"# 222  #"
@@ -132,7 +132,7 @@ IndexRoute = Ember.Route.extend
 					carryCorn: 6
 				}
 				{
-					name: "Task 6"
+					name: "Terrain 6"
 					grid: [
 						"########"
 						"#      #"
@@ -148,7 +148,7 @@ IndexRoute = Ember.Route.extend
 					carryCorn: 0
 				}
 				{
-					name: "Task 7"
+					name: "Terrain 7"
 					grid: [
 						"#####################"
 						"   1 1111111   11 11#"
@@ -164,7 +164,7 @@ IndexRoute = Ember.Route.extend
 					carryCorn: 0
 				}
 				{
-					name: "Task 8"
+					name: "Terrain 8"
 					grid: [
 						"##############"
 						"#            #"
@@ -179,7 +179,7 @@ IndexRoute = Ember.Route.extend
 					carryCorn: 0
 				}
 				{
-					name: "Task 9"
+					name: "Terrain 9"
 					grid: [
 						"#####################"
 						"#1111111111111111111#"
@@ -199,7 +199,7 @@ IndexRoute = Ember.Route.extend
 					carryCorn: 50
 				}
 				{
-					name: "Task 10"
+					name: "Terrain 10"
 					grid: [
 						"#####################"
 						"#                   #"
@@ -216,7 +216,7 @@ IndexRoute = Ember.Route.extend
 					carryCorn: 0
 				}
 				{
-					name: "Task 11"
+					name: "Terrain 11"
 					grid: [
 						"##########"
 						"#        #"
@@ -226,7 +226,7 @@ IndexRoute = Ember.Route.extend
 					carryCorn: 0
 				}
 				{
-					name: "Task 12"
+					name: "Terrain 12"
 					grid: [
 						"##########"
 						"#   1 1  #"
@@ -236,7 +236,7 @@ IndexRoute = Ember.Route.extend
 					carryCorn: 8
 				}
 				{
-					name: "Task 13"
+					name: "Terrain 13"
 					grid: [
 						"#########"
 						"#### ####"
@@ -252,7 +252,7 @@ IndexRoute = Ember.Route.extend
 					carryCorn: 1
 				}
 				{
-					name: "Task 14"
+					name: "Terrain 14"
 					grid: [
 						"#################"
 						"#   #   #   #   #"
@@ -269,7 +269,7 @@ IndexRoute = Ember.Route.extend
 					carryCorn: 4 # has to be 1, 2, 3 or 4 for the task!
 				}
 				{
-					name: "Task 15"
+					name: "Terrain 15"
 					grid: [
 						"#########"
 						"#       #"
