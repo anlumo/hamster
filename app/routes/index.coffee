@@ -305,7 +305,7 @@ IndexRoute = Ember.Route.extend
 						{
 							grid: [
 								new Array(corridorLength + 3).join '#'
-								'#' + (Array(corridorLength + 1).join ' ') + '#'
+								'#' + (new Array(corridorLength + 1).join ' ') + '#'
 								new Array(corridorLength + 3).join '#'
 							]
 
