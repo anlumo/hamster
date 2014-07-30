@@ -402,11 +402,8 @@ IndexRoute = Ember.Route.extend
 
 						turns = Math.random()*10 + 3
 						until turns <= 0 and dir == 3 # always end right
-							console.log (spiral.map (line) -> line.join '').join '\n'
 							len_after = Math.floor(Math.random() * 3) + 1
 							len = prevlen[dir%2] + len_after
-							console.log 'prevlen = [' + prevlen[0] + ', ' + prevlen[1] + ']'
-							console.log 'len_after = ' + len_after, 'len = ' + len
 							switch dir
 								when 0
 									for i in [0...len_after]
