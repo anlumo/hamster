@@ -73,9 +73,10 @@ EditorController = Ember.Controller.extend
 
 		for obj in scope
 			value = frame.evalInScope(obj.name)
-			variables.push
-				name: obj.name
-				description: JSON.stringify value
+			if typeof(value) != 'function'
+				variables.push
+					name: obj.name
+					description: JSON.stringify value
 		@get('model').set 'variables', variables
 
 	playModeTimer: null
