@@ -24,6 +24,11 @@ EditorController = Ember.Controller.extend
 				window.Hub.publish 'hamsterCanMoveForward', (can) ->
 					result = can
 				result
+			vornFrei: -> # alias for vorneFrei
+				result = false
+				window.Hub.publish 'hamsterCanMoveForward', (can) ->
+					result = can
+				result
 			kornDa: ->
 				result = false
 				window.Hub.publish 'hamsterHasCorn', (has) ->
