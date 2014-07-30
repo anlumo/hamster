@@ -388,6 +388,90 @@ IndexRoute = Ember.Route.extend
 						}
 				}
 				{
+					name: "Task 4.6"
+					generator: ->
+						# schnecke
+						firstPath = Math.floor(Math.random() * 5)
+						line = []
+						for i in [0...firstPath]
+							line.push ' '
+						line.push '1'
+						spiral = [line]
+						dir = 1
+						prevlen = [firstPath + 2, 1]
+
+						turns = Math.random()*10 + 3
+						until turns <= 0 and dir == 3 # always end right
+							console.log (spiral.map (line) -> line.join '').join '\n'
+							len_after = Math.floor(Math.random() * 3) + 1
+							len = prevlen[dir%2] + len_after
+							console.log 'prevlen = [' + prevlen[0] + ', ' + prevlen[1] + ']'
+							console.log 'len_after = ' + len_after, 'len = ' + len
+							switch dir
+								when 0
+									for i in [0...len_after]
+										for line in spiral
+											line.unshift '#'
+									line = []
+									for i in [0...len]
+										line.push ' '
+									spiral.unshift line
+									break
+								when 1
+									linelen = spiral[0].length
+									for i in [0...len_after]
+										line = []
+										for col in [0...linelen]
+											line.push '#'
+										spiral.push line
+									for i in [0...len]
+										spiral[i].unshift ' '
+									break
+								when 2
+									for i in [0...len_after]
+										for line in spiral
+											line.push '#'
+									line = []
+									for i in [0...len]
+										line.push ' '
+									spiral.push line
+									break
+								when 3
+									linelen = spiral[0].length
+									for i in [0...len_after]
+										line = []
+										for col in [0...linelen]
+											line.push '#'
+										spiral.unshift line
+									for i in [0...len]
+										spiral[i].push ' '
+									break
+
+							prevlen[dir%2] = len + 1
+							dir = (dir+1)%4
+							turns--
+
+						# frame
+						for line in spiral
+							line.push '#'
+							line.unshift '#'
+						cols = spiral[0].length
+						line = []
+						for i in [0...cols]
+							line.push '#'
+						spiral.push line
+						spiral.unshift line
+
+						for line, y in spiral
+							spiral[y] = line.join ''
+						{
+							grid: spiral
+							hamsterLocation: [ spiral[0].length - 2, spiral.length - 2, 180 ]
+							carryCorn: 0
+						}
+
+				}
+				{
 					name: "Task 4.7"
 					generator: ->
 						mountainSize = Math.floor(Math.random() * 12) + 3
