@@ -70,18 +70,16 @@ EditorController = Ember.Controller.extend
 	running: false
 
 	updateVariables: ->
-		stack = @context.getCallStack()
-		frame = stack[stack.length-1]
-		scope = frame.scope;
-
 		variables = Ember.A()
+		for frame in @context.getCallStack()
+			scope = frame.scope;
 
-		for obj in scope
-			value = frame.evalInScope(obj.name)
-			if typeof(value) != 'function'
-				variables.push
-					name: obj.name
-					description: JSON.stringify value
+			for obj in scope
+				value = frame.evalInScope(obj.name)
+				if typeof(value) != 'function'
+					variables.push
+						name: obj.name
+						description: JSON.stringify value
 		@get('model').set 'variables', variables
 
 	playModeTimer: null
